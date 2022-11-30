@@ -1,36 +1,43 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+  createBrowserRouter,
+  RouterProvider
 } from "react-router-dom";
 
-import Rentals from './Rentals';
-import Departments from './Departments';
-import Cars from './Cars';
-import Home from './Home';
+import Rentals from './components/Rentals';
+import Departments from './components/Departments';
+import Cars from './components/Cars';
+import Home from './components/Home';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    children: [
+      {
+        path: "rentals",
+        element: <Rentals />,
+        children: [
+          {
+            path: "/:id/departments",
+            element: <Departments />,
+            children: [
+              {
+                path: "/:id/cars",
+                element: <Cars />
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <Router>
-    <div>
-      <Routes>
-        <Route path="/rentals">
-          <Rentals />
-        </Route>
-        <Route path="/rentals/${id}/departments">
-          <Departments />
-        </Route>
-        <Route path="/rentals/${id}/departments/${departmentId}/cars ">
-          <Cars />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Routes>
-    </div>
-    </Router>
+    <RouterProvider router={router} />
   );
 }
 
