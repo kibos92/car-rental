@@ -1,0 +1,44 @@
+{
+  "rentals": [
+    {
+      "id": 1,
+      "title": "sixt",
+      "departments":
+      [
+        {
+          "id": 11,
+          "city": "Gdansk",
+          "cars":
+          [
+            {
+              "id": 111,
+              "type": "Renault Clio"
+            },
+            {
+              "id": 112,
+              "type": "Skoda Fabia"
+            }
+          ]
+          },
+        {
+          "id": 12,
+          "city": "Krakow"
+        },
+        {
+          "id": 13,
+          "city": "Warszawa"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "hertz",
+      "author": "typicode"
+    },
+    {
+      "id": 3,
+      "title": "europcar",
+      "author": "typicode"
+    }
+  ]
+}
