@@ -24,9 +24,9 @@ db.mongoose
     process.exit();
   });
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome" });
-});
+  require("./app/routes/rental.routes")(app);
+  require("./app/routes/departments.routes")(app);
+  require("./app/routes/cars.routes")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
