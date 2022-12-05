@@ -1,8 +1,9 @@
+import departments from "../controllers/department.controller.js";
+import express from 'express';
+
 export default app => {
-    const departments = require("../controllers/department.controller.js");
-  
-    var router = require("express").Router();
-  
+    const router = express.Router()
+    
     router.post("/", departments.create);
   
     router.get("/", departments.findAll);
@@ -11,7 +12,7 @@ export default app => {
   
     router.put("/:id", departments.update);
   
-    router.delete("/:id", departments.delete);
+    router.delete("/:id", departments.deleteOne);
   
     app.use('/api/rentals', router);
   };

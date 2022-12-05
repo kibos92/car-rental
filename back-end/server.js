@@ -1,6 +1,10 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import db from "./models/index.js";
+import rental from "./routes/rental.routes.js";
+import department from "./routes/department.routes.js";
+import car from "./routes/car.routes.js";
 
 const app = express();
 
@@ -10,7 +14,6 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
@@ -24,9 +27,9 @@ db.mongoose
     process.exit();
   });
 
-  require("./app/routes/rental.routes")(app);
-  require("./app/routes/departments.routes")(app);
-  require("./app/routes/cars.routes")(app);
+rental(app);
+department(app);
+car(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

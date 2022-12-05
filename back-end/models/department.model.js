@@ -1,4 +1,4 @@
-module.exports = mongoose => {
+export default mongoose => {
     const Department = mongoose.model(
       "department",
       mongoose.Schema(

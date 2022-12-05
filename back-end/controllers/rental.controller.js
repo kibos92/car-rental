@@ -1,8 +1,8 @@
-import rentals from "../models";
+import rentals from "../models/index.js";
 
 const Rental = rentals;
 
-exports.create = (req, res) => {
+const create = (req, res) => {
     if (!req.body.title) {
       res.status(400).send({ message: "Content can not be empty!" });
       return;
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
       });
   };
 
-  exports.findOne = (req, res) => {
+  const findOne = (req, res) => {
     const id = req.params.id;
   
     Rental.findById(id)
@@ -42,7 +42,7 @@ exports.create = (req, res) => {
       });
   };
 
-  exports.findAll = (req, res) => {
+  const findAll = (req, res) => {
     Rental.find()
       .then(data => {
         res.send(data);
@@ -55,7 +55,7 @@ exports.create = (req, res) => {
       });
   };
 
-  exports.update = (req, res) => {
+  const update = (req, res) => {
     if (!req.body) {
       return res.status(400).send({
         message: "Data to update can not be empty!"
@@ -79,7 +79,7 @@ exports.create = (req, res) => {
       });
   };
 
-  exports.delete = (req, res) => {
+  const deleteOne = (req, res) => {
     const id = req.params.id;
   
     Rental.findByIdAndRemove(id)
@@ -100,3 +100,5 @@ exports.create = (req, res) => {
         });
       });
   };
+
+  export default {create, findOne, findAll, update, deleteOne}

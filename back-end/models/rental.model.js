@@ -1,4 +1,4 @@
-module.exports = mongoose => {
+export default mongoose => {
     const Rental = mongoose.model(
       "rental",
       mongoose.Schema(

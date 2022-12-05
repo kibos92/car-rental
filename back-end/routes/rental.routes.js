@@ -1,8 +1,9 @@
+import rentals from "../controllers/rental.controller.js";
+import express from 'express';
+
 export default app => {
-    const rentals = require("../controllers/rental.controller.js");
-  
-    var router = require("express").Router();
-  
+    const router = express.Router()
+    
     router.post("/", rentals.create);
   
     router.get("/", rentals.findAll);
@@ -11,7 +12,7 @@ export default app => {
   
     router.put("/:id", rentals.update);
   
-    router.delete("/:id", rentals.delete);
+    router.delete("/:id", rentals.deleteOne);
   
     app.use('/api/rentals', router);
   };
