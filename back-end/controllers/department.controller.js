@@ -10,8 +10,7 @@ exports.create = (req, res) => {
 
     const department = new Department({
       title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      description: req.body.description
     });
   
     rental

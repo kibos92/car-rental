@@ -1,11 +1,10 @@
 module.exports = mongoose => {
     const Car = mongoose.model(
-      "tutorial",
+      "car",
       mongoose.Schema(
         {
           title: String,
           description: String,
-          published: Boolean
         },
         { timestamps: true }
       )
