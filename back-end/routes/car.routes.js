@@ -14,6 +14,6 @@ export default app => {
   
     router.delete("/:id", cars.deleteOne);
   
-    app.use('/api/rentals', router);
+    app.use('/api/cars', router);
   };
   

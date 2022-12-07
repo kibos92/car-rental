@@ -5,10 +5,14 @@ import {
   RouterProvider
 } from "react-router-dom";
 
+import {QueryClient, QueryClientProvider} from 'react-query';
+
 import Rentals from './components/Rentals';
 import Departments from './components/Departments';
 import Cars from './components/Cars';
 import Home from './components/Home';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -31,7 +35,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 
