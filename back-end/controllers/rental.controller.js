@@ -1,6 +1,6 @@
-import rentals from "../models/index.js";
+import db from "../models/index.js";
 
-const Rental = rentals;
+const Rental = db.rentals;
 
 const create = (req, res) => {
     if (!req.body.title) {

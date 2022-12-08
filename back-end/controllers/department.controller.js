@@ -1,6 +1,6 @@
-import departments from "../models/index.js";
+import db from "../models/index.js";
 
-const Department = departments;
+const Department = db.departments;
 
 const create = (req, res) => {
     if (!req.body.title) {

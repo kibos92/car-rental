@@ -17,7 +17,7 @@ const Rentals = () => {
     return (
       <div>
       <ul>
-        {query.data.map(rental => (
+        {query.data?.data.map(rental => (
           <li key={rental.id}>{rental.title}</li>
         ))}
       </ul>

@@ -1,6 +1,6 @@
-import cars from "../models/index.js";
+import db from "../models/index.js";
 
-const Car = cars;
+const Car = db.cars;
 
 const create = (req, res) => {
     if (!req.body.title) {
