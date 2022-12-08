@@ -1,5 +1,5 @@
 export default interface IRentalData {
-    id?: any | null,
+    _id?: any | null,
     title: string,
     description: string,
   }
