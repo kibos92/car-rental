@@ -17,11 +17,6 @@ const Rentals = () => {
 
   const [rentalName, setRentalName] = useState('')
 
-  const handleRentalNameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setRentalName(event.target.value);
-};
-
-
     return (
       <div>
         <label className='label'>Lista wypożyczalni: </label>
@@ -41,7 +36,7 @@ const Rentals = () => {
         <input
           type='name'
           value={rentalName}
-          onChange={handleRentalNameInputChange}
+          onChange={(e) => setRentalName(e.target.value)}
         />
         </div>
         </div>
