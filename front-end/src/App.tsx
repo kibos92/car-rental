@@ -11,6 +11,9 @@ import Rentals from './components/Rentals';
 import Departments from './components/Departments';
 import Cars from './components/Cars';
 import Home from './components/Home';
+import Navbar from './components/NavBar';
+import Hero from './components/Hero';
+import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -35,9 +38,23 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <div className='container is-widescreen'>
+      <div className='navbar'>
+        <Navbar />
+      </div>
+      <div className='hero'>
+      <Hero />
+      </div>
+      <div className='section'>
     <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
     </QueryClientProvider>
+    </div>
+    <div className='footer'>
+      <Footer />
+    </div>
+    </div>
+    
   );
 }
 
