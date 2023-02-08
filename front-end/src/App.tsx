@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='container is-widescreen'>
+    <div className='container'>
       <div className='navbar'>
         <Navbar />
       </div>
@@ -50,7 +50,7 @@ function App() {
     <RouterProvider router={router} />
     </QueryClientProvider>
     </div>
-    <div className='footer'>
+    <div className='footer' style={{padding: 5}}>
       <Footer />
     </div>
     </div>
