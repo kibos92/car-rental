@@ -16,7 +16,7 @@ const Navbar = () => {
         </a>
       </div>
       <div id='navbar' className='navbar-menu'>
-        <div className='navbar-end'>
+        <div className='navbar-start'>
           <div className='navbar-item'>
             <a href='/' className='navbar-item'>
               Home
@@ -25,6 +25,16 @@ const Navbar = () => {
               Rentals
             </a>
           </div>
+        </div>
+        <div className="navbar-end">
+          <div className="buttons">
+          <div className='navbar-item'>
+            <button className="button is-primary">Log In</button>
+            </div>
+            <div className='navbar-item'>
+              <button className="button is-primary">Log Out</button>
+              </div>
+            </div>
         </div>
       </div>
     </nav>

@@ -50,7 +50,7 @@ function App() {
     <RouterProvider router={router} />
     </QueryClientProvider>
     </div>
-    <div className='footer' style={{padding: 5}}>
+    <div className='footer' style={{padding: 2}}>
       <Footer />
     </div>
     </div>
