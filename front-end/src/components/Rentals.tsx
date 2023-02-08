@@ -6,9 +6,9 @@ const Rentals = () => {
 
   const queryClient = useQueryClient();
 
-  const query = useQuery({ queryKey: ['rentals'], queryFn: RentalDataService.getAll });
+  const getAll = useQuery({ queryKey: ['rentals'], queryFn: RentalDataService.getAll });
 
-  const mutation = useMutation({
+  const addOne = useMutation({
     mutationFn: RentalDataService.create,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['rentals'] })
@@ -24,22 +24,32 @@ const Rentals = () => {
 
     return (
       <div>
+        <label className='label'>Lista wypożyczalni: </label>
+        <div className='block'>
       <ul>
-        {query.data?.data.map(rental => (
+        {getAll.data?.data.map(rental => (
           <li key={rental._id}>{rental.title}</li>
         ))}
       </ul>
-      <form>
-      <label>Name</label>
+      </div>
+
+      <div className='block'>
+      <form className='box'>
+      <div className="field">
+      <label className='label'>Dodaj nową wypożyczalnie: </label>
+      <div className="control">
         <input
           type='name'
           value={rentalName}
           onChange={handleRentalNameInputChange}
         />
+        </div>
+        </div>
 
       <button
+        className='button is-primary'
         onClick={() => {
-          mutation.mutate({
+          addOne.mutate({
             description: "rental",
             title: rentalName
           })
@@ -48,6 +58,7 @@ const Rentals = () => {
         Add Rental
       </button>
       </form>
+      </div>
     </div>
     )
   }

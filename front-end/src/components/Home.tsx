@@ -1,6 +1,11 @@
 const Home = () => {
     return (
-      <h1 className="title">Home</h1>
+      <div>
+      <div className="block">
+        Wybierz <strong>miasto</strong> oraz <strong>termin</strong> wynajmu samochodu.
+      </div>
+      
+    </div>
     )
   }
   
