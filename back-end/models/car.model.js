@@ -1,6 +1,6 @@
 export default mongoose => {
     const Car = mongoose.model(
-      "car",
+      "Car",
       mongoose.Schema(
         {
           title: String,

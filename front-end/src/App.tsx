@@ -14,6 +14,7 @@ import Home from './components/Home';
 import Navbar from './components/NavBar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
+import SelectCar from './components/SelectCar';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/select",
+    element: <SelectCar />,
   },
   {
     path: "/rentals",
@@ -50,7 +55,7 @@ function App() {
     <RouterProvider router={router} />
     </QueryClientProvider>
     </div>
-    <div className='footer' style={{padding: 2}}>
+    <div className='footer' style={{padding: 5}}>
       <Footer />
     </div>
     </div>

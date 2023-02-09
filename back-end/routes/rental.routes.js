@@ -8,11 +8,11 @@ export default app => {
   
     router.get("/", rentals.findAll);
 
-    router.get("/:id", rentals.findOne);
+    router.get("/:_id", rentals.findOne);
   
-    router.put("/:id", rentals.update);
+    router.put("/:_id", rentals.update);
   
-    router.delete("/:id", rentals.deleteOne);
+    router.delete("/:_id", rentals.deleteOne);
   
     app.use('/api/rentals', router);
   };

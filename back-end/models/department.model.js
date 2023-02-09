@@ -1,6 +1,6 @@
 export default mongoose => {
     const Department = mongoose.model(
-      "department",
+      "Department",
       mongoose.Schema(
         {
           title: String,

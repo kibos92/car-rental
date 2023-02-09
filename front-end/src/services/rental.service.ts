@@ -6,20 +6,20 @@ class RentalDataService {
     return http.get<Array<IRentalData>>("/rentals");
   }
 
-  get(id: string) {
-    return http.get<IRentalData>(`/rentals/${id}`);
+  get(_id: string) {
+    return http.get<IRentalData>(`/rentals/${_id}`);
   }
 
   create(data: IRentalData) {
     return http.post<IRentalData>("/rentals", data);
   }
 
-  update(data: IRentalData, id: any) {
-    return http.put<any>(`/rentals/${id}`, data);
+  update(data: IRentalData, _id: any) {
+    return http.put<any>(`/rentals/${_id}`, data);
   }
 
-  delete(id: any) {
-    return http.delete<any>(`/rentals/${id}`);
+  delete(_id: any) {
+    return http.delete<any>(`/rentals/${_id}`);
   }
 }
 

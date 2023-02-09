@@ -1,5 +1,5 @@
 export default interface IDepartmentData {
-    id?: any | null,
+    _id?: any | null,
     title: string,
     description: string,
   }
