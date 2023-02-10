@@ -12,7 +12,7 @@ const create = (req, res) => {
       title: req.body.title,
       headquarters: req.body.headquarters,
       contactDetails: req.body.contactDetails,
-      deparments: req.body.deparments
+      departments: req.body.departments
     });
   
     rental
@@ -29,7 +29,7 @@ const create = (req, res) => {
   };
 
   const findOne = (req, res) => {
-    const id = req.params._id;
+    const id = req.params.id;
   
     Rental.findById(id)
       .then(data => {
@@ -64,7 +64,7 @@ const create = (req, res) => {
       });
     }
   
-    const id = req.params._id;
+    const id = req.params.id;
   
     Rental.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
       .then(data => {
@@ -82,7 +82,7 @@ const create = (req, res) => {
   };
 
   const deleteOne = (req, res) => {
-    const id = req.params._id;
+    const id = req.params.id;
   
     Rental.findByIdAndRemove(id)
       .then(data => {

@@ -57,7 +57,7 @@ const Rentals = () => {
           addOne.mutate({
             title: rentalName,
             headquarters: rentalAddress,
-            contactDetails: rentalContact
+            contactDetails: rentalContact,
           })
         }}
       >
