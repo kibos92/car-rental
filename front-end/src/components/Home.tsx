@@ -8,6 +8,7 @@ const Home = () => {
     return (
       <div>
         <RentalForm onSelect = {onSelect} />
+        
       </div>
     )
   }

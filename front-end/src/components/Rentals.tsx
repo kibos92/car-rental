@@ -16,6 +16,13 @@ const Rentals = () => {
     },
   })
 
+  const deleteOne = useMutation({
+    mutationFn: RentalDataService.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['rentals'] })
+    },
+  })
+
   const [rentalName, setRentalName] = useState('')
   const [rentalAddress, setRentalAddress] = useState('')
   const [rentalContact, setRentalContact] = useState('')
@@ -65,6 +72,7 @@ const Rentals = () => {
       >
         Add Rental
       </button>
+
       </form>
       </div>
 
@@ -72,7 +80,14 @@ const Rentals = () => {
         <div className='block'>
       <ul>
         {getAll.data?.data.map(rental => (
-          <li key={rental._id}><Link to={`/rentals/${rental._id}`}>{rental.title}</Link></li>
+          <li className='block' key={rental._id}><Link to={`/rentals/${rental._id}`}>{rental.title} </Link>
+          <button
+        className='delete'
+        onClick={() => {
+          deleteOne.mutate(rental._id)
+        }}>
+        </button>
+          </li>
         ))}
       </ul>
       </div>
