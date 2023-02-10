@@ -5,5 +5,5 @@ export default interface IRentalData {
     title: string,
     headquarters: string,
     contactDetails: string,
-    //departments: [ Schema.Types.ObjectId ]
+    departments: Schema.Types.ObjectId[]
   }

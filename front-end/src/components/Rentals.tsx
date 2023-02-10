@@ -58,6 +58,7 @@ const Rentals = () => {
             title: rentalName,
             headquarters: rentalAddress,
             contactDetails: rentalContact,
+            departments: []
           })
         }}
       >

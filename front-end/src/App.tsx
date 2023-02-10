@@ -15,6 +15,7 @@ import Navbar from './components/NavBar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import SelectCar from './components/SelectCar';
+import Rental from './components/Rental';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/rentals",
     element: <Rentals />,
+  },
+  {
+    path: "/rentals/:id",
+    element: <Rental />,
   },
   {
     path: "/rentals/:id/departments",
