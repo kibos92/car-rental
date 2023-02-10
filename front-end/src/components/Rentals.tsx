@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import {useQueryClient, useQuery, useMutation} from 'react-query';
 import RentalDataService from '../services/rental.service';
+import { Link } from "react-router-dom";
 
 const Rentals = () => {
 
@@ -71,7 +72,7 @@ const Rentals = () => {
         <div className='block'>
       <ul>
         {getAll.data?.data.map(rental => (
-          <li key={rental._id}>{rental.title}</li>
+          <li key={rental._id}><Link to={`/rentals/${rental._id}`}>{rental.title}</Link></li>
         ))}
       </ul>
       </div>

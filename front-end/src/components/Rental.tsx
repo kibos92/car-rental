@@ -11,7 +11,7 @@ const Rental = () => {
     
       const rental = getOne.data?.data;
     
-      return <div>{JSON.stringify(rental)}</div>;
+      return <div>{JSON.stringify(rental?.title)}</div>;
   }
   
   export default Rental
