@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className="footer" style={{paddingBottom:"3rem"}}>
         <div className="has-text-centered">
-            Created by Sebastian Sobik
+            Footer
         </div>
       </footer>
     )

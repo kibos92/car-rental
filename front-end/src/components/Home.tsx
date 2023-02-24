@@ -1,16 +1,23 @@
-import RentalForm from './RentalForm';
-import { useState } from 'react'
+import RentalForm, { RentalData } from "./RentalForm";
+import { useState } from "react";
+import SelectCar from "./SelectCar";
 
 const Home = () => {
+  const [rentalData, setRentalData] = useState<RentalData | null>(null)
 
-  const [onSelect, setOnSelect] = useState([]) 
+  return (
+    <div>
+      {rentalData ? (
+        <SelectCar rentalData ={rentalData} />
+      ) : (
+        <RentalForm
+          onSelect={(rentalData) => {
+            setRentalData(rentalData);
+          }}
+        />
+      )}
+    </div>
+  );
+};
 
-    return (
-      <div>
-        <RentalForm onSelect = {onSelect} />
-        
-      </div>
-    )
-  }
-  
-  export default Home
+export default Home;
