@@ -1,14 +1,17 @@
+import { Schema } from "mongoose";
+
 export default mongoose => {
-    const Car = mongoose.model(
-      "Car",
-      mongoose.Schema(
+    var schema = mongoose.Schema(
         {
-          title: String,
-          description: String,
+            brand: { type: String, required: true },
+            model: { type: String, required: true },
+            plateNumber: { type: String, required: true },
+            year: { type: String, required: true },
         },
         { timestamps: true }
-      )
     );
+    
+    const Car = mongoose.model("Car", schema)
   
     return Car;
   };
