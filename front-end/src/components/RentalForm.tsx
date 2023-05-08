@@ -45,14 +45,13 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
             <label className="label">Wybierz miasto: </label>
             <div className="select">
               <select value={city} onChange={(e) => setCity(e.target.value)}>
-                <option value="warszawa">Warszawa</option>
-                <option value="wroclaw">Wrocław</option>
-                <option value="krakow">Kraków</option>
-                <option selected value="lodz">
-                  Łódź
-                </option>
-                <option value="poznan">Poznań</option>
-                <option value="gdansk">Gdańsk</option>
+                <option value="">...</option>
+                <option value="Warszawa">Warszawa</option>
+                <option value="wrocław">Wrocław</option>
+                <option value="kraków">Kraków</option>
+                <option value="Łódź">Łódź</option>
+                <option value="Poznań">Poznań</option>
+                <option value="Gdańsk">Gdańsk</option>
               </select>
             </div>
           </div>

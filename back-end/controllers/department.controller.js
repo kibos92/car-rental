@@ -3,17 +3,19 @@ import db from "../models/index.js";
 const Department = db.departments;
 
 const create = (req, res) => {
-    if (!req.body.title) {
+    if (!req.body.location) {
       res.status(400).send({ message: "Content can not be empty!" });
       return;
     }
 
     const department = new Department({
-      title: req.body.title,
-      description: req.body.description
+    location: req.body.location,
+    address: req.body.address,
+    contactDetails: req.body.contactDetails,
+    cars: req.body.cars
     });
   
-    rental
+    department
       .save(department)
       .then(data => {
         res.send(data);
