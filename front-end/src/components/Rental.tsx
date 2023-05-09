@@ -1,12 +1,13 @@
 import { useState} from 'react';
 import { useParams } from 'react-router-dom'
 import DepartmentDataService from '../services/department.service';
+import IDepartmentData from "../types/department.type";
 import RentalDataService from '../services/rental.service';
 import {useQueryClient, useQuery, useMutation} from 'react-query';
 import { Link } from "react-router-dom";
 
 const Rental = () => {
-    let { id } = useParams()
+  const { id } = useParams<{ id: string }>(); 
 
     const [departmentLocation, setDepartmentLocation] = useState('')
     const [departmentAddress, setDepartmentAddress] = useState('')
@@ -14,12 +15,13 @@ const Rental = () => {
 
     const queryClient = useQueryClient();
 
-    const addOne = useMutation({
-        mutationFn: DepartmentDataService.create,
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['departments'] })
-        },
-      })
+    const addOne = useMutation((newDepartment: IDepartmentData) => {
+      return DepartmentDataService.create(id!, newDepartment);
+    }, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['departments'] })
+      },
+    })
 
     const getOneRental = useQuery(["rentals", id], () => {
     return RentalDataService.get(String(id));

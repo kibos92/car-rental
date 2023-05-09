@@ -4,15 +4,15 @@ import express from 'express';
 export default app => {
     const router = express.Router()
     
-    router.post("/", departments.create);
+    router.post("/:rentalId/departments", departments.create);
   
-    router.get("/", departments.findAll);
+    router.get("/:rentalId/departments", departments.findAll);
 
-    router.get("/:id", departments.findOne);
+    router.get("/:rentalId/departments/:id", departments.findOne);
   
-    router.put("/:id", departments.update);
+    router.put("/:rentalId/departments/:id", departments.update);
   
-    router.delete("/:id", departments.deleteOne);
+    router.delete("/:rentalId/departments/:id", departments.deleteOne);
   
     app.use('/api/departments', router);
   };

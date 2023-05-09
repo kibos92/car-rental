@@ -1,32 +1,55 @@
 import db from "../models/index.js";
 
 const Department = db.departments;
+const Rental = db.rentals;
 
 const create = (req, res) => {
-    if (!req.body.location) {
-      res.status(400).send({ message: "Content can not be empty!" });
-      return;
-    }
+  if (!req.body.location) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
 
-    const department = new Department({
-    location: req.body.location,
-    address: req.body.address,
-    contactDetails: req.body.contactDetails,
-    cars: req.body.cars
-    });
-  
-    department
-      .save(department)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Department."
-        });
+  const rentalId = req.body.rentalId;
+
+  if (!rentalId) {
+    res.status(400).send({ message: "Rental ID is required!" });
+    return;
+  }
+
+  Rental.findById(rentalId)
+    .then(rental => {
+      if (!rental) {
+        res.status(404).send({ message: `Rental with id=${rentalId} not found!` });
+        return;
+      }
+
+      const department = new Department({
+        location: req.body.location,
+        address: req.body.address,
+        contactDetails: req.body.contactDetails,
+        cars: req.body.cars,
+        rentalId: rentalId
       });
-  };
+
+      department
+        .save(department)
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the Department."
+          });
+        });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || `Error retrieving Rental with id=${rentalId}.`
+      });
+    });
+};
 
   const findOne = (req, res) => {
     const id = req.params.id;

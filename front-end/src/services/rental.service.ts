@@ -1,6 +1,5 @@
 import http from "../http-common";
 import IRentalData from "../types/rental.type";
-import { Schema } from "mongoose";
 
 class RentalDataService {
   getAll() {
