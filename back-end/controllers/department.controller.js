@@ -9,7 +9,7 @@ const create = (req, res) => {
     return;
   }
 
-  const rentalId = req.body.rentalId;
+  const rentalId = req.params.rentalId;
 
   if (!rentalId) {
     res.status(400).send({ message: "Rental ID is required!" });

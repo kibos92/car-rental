@@ -78,7 +78,8 @@ const Rental = () => {
 
       <button
         className='button is-primary'
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           addOne.mutate({
             location: departmentLocation,
             address: departmentAddress,
