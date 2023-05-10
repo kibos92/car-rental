@@ -32,9 +32,19 @@ const create = (req, res) => {
       });
 
       department
-        .save(department)
+        .save()
         .then(data => {
-          res.send(data);
+          rental.departments.push(data._id); 
+          rental.save()
+            .then(() => {
+              res.send(data);
+            })
+            .catch(err => {
+              res.status(500).send({
+                message:
+                  err.message || "Some error occurred while updating Rental."
+              });
+            });
         })
         .catch(err => {
           res.status(500).send({
