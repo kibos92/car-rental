@@ -5,5 +5,6 @@ export default interface IDepartmentData {
   location: string,
   address: string,
   contactDetails: string,
-  cars: Schema.Types.ObjectId[]
+  cars: Schema.Types.ObjectId[],
+  rentalId: any | null
   }

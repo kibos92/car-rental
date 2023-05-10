@@ -15,8 +15,18 @@ const Rental = () => {
 
     const queryClient = useQueryClient();
 
+    const getAll = useQuery(['departments', id], () => DepartmentDataService.getAll(id!));
+
     const addOne = useMutation((newDepartment: IDepartmentData) => {
       return DepartmentDataService.create(id!, newDepartment);
+    }, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['departments'] })
+      },
+    })
+
+    const deleteOne = useMutation((departmentId: string) => {
+      return DepartmentDataService.delete(id!, departmentId);
     }, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['departments'] })
@@ -84,7 +94,8 @@ const Rental = () => {
             location: departmentLocation,
             address: departmentAddress,
             contactDetails: departmentContact,
-            cars: []
+            cars: [],
+            rentalId: id
           })
         }}
       >
@@ -92,6 +103,27 @@ const Rental = () => {
       </button>
 
       </form>
+      </div>
+
+      <label className='label'>Lista oddziałów: </label>
+      <div className='block'>
+      <ul>
+        {getAll.data?.data
+  .filter(department => department.rentalId === id)
+  .map(department => (
+    <li className='block' key={department._id}>
+      <Link to={`/rentals/${id}/departments/${department._id}`}>
+        {department.location}
+      </Link>
+      <button
+        className='delete'
+        onClick={() => {
+          deleteOne.mutate(department._id)
+        }}>
+      </button>
+    </li>
+))}
+      </ul>
       </div>
             
             <Link to={`/rentals/`} className="button is-primary">Return</Link>

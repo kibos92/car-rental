@@ -78,7 +78,8 @@ const create = (req, res) => {
   };
 
   const findAll = (req, res) => {
-    Department.find()
+    const rentalId = req.params.id;
+    Department.find({ rental: rentalId })
       .then(data => {
         res.send(data);
       })
@@ -115,23 +116,43 @@ const create = (req, res) => {
   };
 
   const deleteOne = (req, res) => {
-    const id = req.params.id;
+    const departmentId = req.params.id;
+    const rentalId = req.params.rentalId;
   
-    Department.findByIdAndRemove(id)
-      .then(data => {
-        if (!data) {
+    Department.findByIdAndRemove(departmentId)
+      .then(deletedDepartment => {
+        if (!deletedDepartment) {
           res.status(404).send({
-            message: `Cannot delete Department with id=${id}. Maybe Department was not found!`
+            message: `Cannot delete Department with id=${departmentId}. Maybe Department was not found!`
           });
-        } else {
-          res.send({
-            message: "Department was deleted successfully!"
-          });
+          return;
         }
+  
+        Rental.findByIdAndUpdate(
+          rentalId,
+          { $pull: { departments: departmentId } },
+          { new: true }
+        )
+          .then(updatedRental => {
+            if (!updatedRental) {
+              res.status(404).send({
+                message: `Cannot delete Department with id=${departmentId} from Rental with id=${rentalId}. Maybe Rental was not found!`
+              });
+            } else {
+              res.send({
+                message: "Department was deleted successfully!"
+              });
+            }
+          })
+          .catch(err => {
+            res.status(500).send({
+              message: `Could not delete Department with id=${departmentId} from Rental with id=${rentalId}.`
+            });
+          });
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Department with id=" + id
+          message: `Could not delete Department with id=${departmentId}.`
         });
       });
   };

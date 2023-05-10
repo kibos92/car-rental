@@ -7,6 +7,7 @@ export default mongoose => {
             address: { type: String, required: true },
             contactDetails: { type: String, required: true },
             cars: [{ type: Schema.Types.ObjectId, ref: "Car" }], 
+            rentalId: { type: String, required: true },
         },
         { timestamps: true }
     );
