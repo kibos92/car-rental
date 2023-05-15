@@ -42,7 +42,6 @@ const Department = () => {
     
   const department = getOneDepartment.data?.data;
 
-  console.log(rentalId, departmentId);
 
     return (
       <div>
