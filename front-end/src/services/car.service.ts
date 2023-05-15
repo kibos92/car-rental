@@ -2,24 +2,24 @@ import http from "../http-common";
 import ICarData from "../types/car.type";
 
 class CarDataService {
-  getAll() {
-    return http.get<Array<ICarData>>("/cars");
+  getAll(rentalId: any, departmentId: any) {
+    return http.get<Array<ICarData>>(`/rentals/${rentalId}/departments/${departmentId}/cars`);
   }
 
-  get(id: string) {
-    return http.get<ICarData>(`/cars/${id}`);
+  get(rentalId: any, departmentId: any, id: string) {
+    return http.get<ICarData>(`/rentals/${rentalId}/departments/${departmentId}/cars/${id}`);
   }
 
-  create(data: ICarData) {
-    return http.post<ICarData>("/cars", data);
+  create(rentalId: any, departmentId: any, data: ICarData) {
+    return http.post<ICarData>(`/rentals/${rentalId}/departments/${departmentId}/cars`, data);
   }
 
-  update(data: ICarData, id: any) {
-    return http.put<any>(`/cars/${id}`, data);
+  update(rentalId: any, departmentId: any, data: ICarData, id: any) {
+    return http.put<any>(`/rentals/${rentalId}/departments/${departmentId}/cars/${id}`, data);
   }
 
-  delete(id: any) {
-    return http.delete<any>(`/cars/${id}`);
+  delete(rentalId: any, departmentId: any, id: any) {
+    return http.delete<any>(`/rentals/${rentalId}/departments/${departmentId}/cars/${id}`);
   }
 }
 

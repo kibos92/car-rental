@@ -1,5 +1,8 @@
 export default interface ICarData {
     _id?: any | null,
-    title: string,
-    description: string,
+    brand: string,
+    model: string,
+    plateNumber: string,
+    year: string,
+    departmentId: any | null
   }

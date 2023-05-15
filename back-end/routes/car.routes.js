@@ -4,16 +4,16 @@ import express from 'express';
 export default app => {
     const router = express.Router()
     
-    router.post("/", cars.create);
+    router.post("/:departmentId/cars", cars.create);
   
-    router.get("/", cars.findAll);
+    router.get("/:departmentId/cars", cars.findAll);
 
-    router.get("/:id", cars.findOne);
+    router.get("/:departmentId/cars/:id", cars.findOne);
   
-    router.put("/:id", cars.update);
+    router.put("/:departmentId/cars/:id", cars.update);
   
-    router.delete("/:id", cars.deleteOne);
+    router.delete("/:departmentId/cars/:id", cars.deleteOne);
   
-    app.use('/api/cars', router);
+    app.use('/api/rentals/:rentalId/departments', router);
   };
   

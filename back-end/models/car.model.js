@@ -1,5 +1,3 @@
-import { Schema } from "mongoose";
-
 export default mongoose => {
     var schema = mongoose.Schema(
         {
@@ -7,6 +5,7 @@ export default mongoose => {
             model: { type: String, required: true },
             plateNumber: { type: String, required: true },
             year: { type: String, required: true },
+            departmentId: {type: String, required: true}
         },
         { timestamps: true }
     );
