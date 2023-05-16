@@ -1,11 +1,15 @@
 const Footer = () => {
-    return (
-        <footer className="footer" style={{paddingBottom:"3rem"}}>
-        <div className="has-text-centered">
-            Footer
-        </div>
-      </footer>
-    )
-  }
-  
-  export default Footer
+  const footerStyle = {
+    padding: '1rem 1rem 1rem',
+  };
+
+  return (
+    <footer className="footer" style={footerStyle}>
+      <div className="has-text-centered">
+        Footer
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
