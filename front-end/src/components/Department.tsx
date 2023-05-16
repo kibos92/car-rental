@@ -5,6 +5,8 @@ import ICarData from "../types/car.type";
 import CarDataService from '../services/car.service';
 import {useQueryClient, useQuery, useMutation} from 'react-query';
 import { Link } from "react-router-dom";
+import IDepartmentData from '../types/department.type';
+import Modal from './Modal';
 
 const Department = () => {
 
@@ -42,19 +44,66 @@ const Department = () => {
     
   const department = getOneDepartment.data?.data;
 
+  const updateOneDepartment = useMutation((updatedDepartment: IDepartmentData) => {
+    return DepartmentDataService.update(rentalId!, updatedDepartment, departmentId!);
+  }, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['departments'] })
+    },
+  })
+
+  const handleLocationChange = (updatedLocation: string) => {
+    updateOneDepartment.mutate({ ...department, location: updatedLocation, address: department!.address, contactDetails: department!.contactDetails, cars: department!.cars, rentalId: department!.rentalId });
+  };
+
+  const handleAddressChange = (updatedAddress: string) => {
+    updateOneDepartment.mutate({  ...department, location: department!.location, address: updatedAddress, contactDetails: department!.contactDetails, cars: department!.cars, rentalId: department!.rentalId });
+  };
+
+  const handleContactDetailsChange = (updatedContactDetails: string) => {
+    updateOneDepartment.mutate({  ...department, location: department!.location, address: department!.address, contactDetails: updatedContactDetails, cars: department!.cars, rentalId: department!.rentalId });
+  };
+
 
     return (
       <div>
-        
-          <div className='block'>
-                {department?.location}
-            </div>
-            <div className='block'>
-                {department?.address}
-            </div>
-            <div className='block'>
-                {department?.contactDetails}
-            </div>
+        <label className='label'>Oddział: </label>
+
+          <div className="block">
+  <Modal title={department?.location}>
+    <input
+      type="text"
+      value={department?.location || ''}
+      onChange={(e) => handleLocationChange(e.target.value)}
+    />
+  </Modal>
+</div>
+
+            <label className='label'>Adres oddziału: </label>
+
+            <div className="block">
+  <Modal title={department?.address}>
+    <input
+      type="text"
+      value={department?.address || ''}
+      onChange={(e) => handleAddressChange(e.target.value)}
+    />
+  </Modal>
+</div>
+
+
+            <label className='label'>Dane kontaktowe: </label>
+
+            <div className="block">
+  <Modal title={department?.contactDetails}>
+    <input
+      type="text"
+      value={department?.contactDetails || ''}
+      onChange={(e) => handleContactDetailsChange(e.target.value)}
+    />
+  </Modal>
+</div>
+
 
             <div className='block'>
       <form className='box'>

@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import DepartmentDataService from '../services/department.service';
 import IDepartmentData from "../types/department.type";
 import RentalDataService from '../services/rental.service';
+import IRentalData from '../types/rental.type';
 import {useQueryClient, useQuery, useMutation} from 'react-query';
 import { Link } from "react-router-dom";
+import Modal from './Modal';
 
 const Rental = () => {
   const { id } = useParams<{ id: string }>(); 
@@ -33,24 +35,69 @@ const Rental = () => {
       },
     })
 
+    const updateOneRental = useMutation((updatedRental: IRentalData) => {
+      return RentalDataService.update(updatedRental, id!);
+    }, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['rentals'] })
+      },
+    })
+
     const getOneRental = useQuery(["rentals", id], () => {
     return RentalDataService.get(String(id));
   });
     
       const rental = getOneRental.data?.data;
-    
+
+      const handleTitleChange = (updatedTitle: string) => {
+        updateOneRental.mutate({ ...rental, title: updatedTitle, headquarters: rental!.headquarters, contactDetails: rental!.contactDetails, departments: rental!.departments });
+      };
+
+      const handleHeadquartersChange = (updatedHeadquarters: string) => {
+        updateOneRental.mutate({ ...rental, title: rental!.title, headquarters: updatedHeadquarters, contactDetails: rental!.contactDetails, departments: rental!.departments });
+      };
+
+      const handleContactDetailsChange = (updatedContactDetails: string) => {
+        updateOneRental.mutate({ ...rental, title: rental!.title, headquarters: rental!.headquarters, contactDetails: updatedContactDetails, departments: rental!.departments });
+      };
+      
       return (
         <div>
+<label className='label'>Nazwa: </label>
 
-            <div className='block'>
-                {rental?.title}
-            </div>
-            <div className='block'>
-                {rental?.headquarters}
-            </div>
-            <div className='block'>
-                {rental?.contactDetails}
-            </div>
+<div className="block">
+  <Modal title={rental?.title}>
+    <input
+      type="text"
+      value={rental?.title || ''}
+      onChange={(e) => handleTitleChange(e.target.value)}
+    />
+  </Modal>
+</div>
+
+            <label className='label'>Adres główny: </label>
+
+            <div className="block">
+  <Modal title={rental?.headquarters}>
+    <input
+      type="text"
+      value={rental?.headquarters || ''}
+      onChange={(e) => handleHeadquartersChange(e.target.value)}
+    />
+  </Modal>
+</div>
+
+            <label className='label'>Dane kontaktowe: </label>
+
+           <div className="block">
+  <Modal title={rental?.contactDetails}>
+    <input
+      type="text"
+      value={rental?.contactDetails || ''}
+      onChange={(e) => handleContactDetailsChange(e.target.value)}
+    />
+  </Modal>
+</div>
 
             <div className='block'>
       <form className='box'>
