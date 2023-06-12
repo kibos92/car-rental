@@ -3,6 +3,19 @@ import db from "../models/index.js";
 const Car = db.cars;
 const Department = db.departments;
 
+const findAllCars = (req, res) => {
+  Car.find()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving rentals."
+      });
+    });
+};
+
 const create = (req, res) => {
   if (!req.body.brand) {
     res.status(400).send({ message: "Content can not be empty!" });
@@ -158,4 +171,4 @@ const create = (req, res) => {
       });
   };
 
-  export default {create, findOne, findAll, update, deleteOne}
+  export default {create, findOne, findAll, update, deleteOne, findAllCars}

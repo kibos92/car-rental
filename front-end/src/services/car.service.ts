@@ -6,6 +6,10 @@ class CarDataService {
     return http.get<Array<ICarData>>(`/rentals/${rentalId}/departments/${departmentId}/cars`);
   }
 
+  getAllCars() {
+    return http.get<Array<ICarData>>("/cars");
+  }
+
   get(rentalId: any, departmentId: any, id: string) {
     return http.get<ICarData>(`/rentals/${rentalId}/departments/${departmentId}/cars/${id}`);
   }

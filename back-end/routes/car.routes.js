@@ -8,6 +8,8 @@ export default app => {
   
     router.get("/:departmentId/cars", cars.findAll);
 
+    router.get("/cars", cars.findAllCars);
+
     router.get("/:departmentId/cars/:id", cars.findOne);
   
     router.put("/:departmentId/cars/:id", cars.update);
@@ -15,5 +17,7 @@ export default app => {
     router.delete("/:departmentId/cars/:id", cars.deleteOne);
   
     app.use('/api/rentals/:rentalId/departments', router);
+
+    app.use(router);
   };
   
