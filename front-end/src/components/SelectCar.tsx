@@ -1,6 +1,6 @@
 import {useQueryClient, useQuery, useMutation} from 'react-query';
 import carDataService from '../services/car.service';
-import ICarData from '../types/car.type';
+import departmentDataService from '../services/department.service'
 
 interface SelectCarProps {
 rentalData: {
@@ -13,26 +13,48 @@ endDate: Date;
 const SelectCar = ({ rentalData }: SelectCarProps) => {
 const { city, startDate, endDate } = rentalData;
 
-const getAll = useQuery({ queryKey: ['cars'], queryFn: carDataService.getAllCars });
+const getAllCars = useQuery({ queryKey: ['cars'], queryFn: carDataService.getAllCars });
 
-const cars: any[] = getAll.data?.data || [];
+const getAllDepartments = useQuery({ queryKey: ['departments'], queryFn: departmentDataService.getAllDepartments });
+
+const cars: any[] = getAllCars.data?.data || [];
+
+const departments: any[] = getAllDepartments.data?.data || [];
+
+
+const filterCarsByCity = () => {
+  const departmentsByCity = departments.filter((department) => department.location === city);
+
+  const filteredCars = departmentsByCity.flatMap((department) => {
+    const departmentCars = cars.filter((car) => car.departmentId === department._id);
+    return departmentCars;
+  });
+
+  return filteredCars;
+};
+
+const filteredCars = filterCarsByCity();
 
 return (
 <div>
 
-<h1>Wybrane opcje wynajmu samochodu:</h1>
+<label className="label">
 <p>Miasto: {city}</p>
 <p>Data rozpoczęcia: {startDate.toLocaleDateString()}</p>
 <p>Data zakończenia: {endDate.toLocaleDateString()}</p>
+</label>
 
-<h1>Lista pojazdów</h1>
+<div className='box'>
+<h1>Lista dostępnych pojazdów:</h1>
 
-{cars.map((car: any) => (
+<label className="label">
+{filteredCars.map((car: any) => (
         <div key={car._id}>
-          <p>Marka: {car.brand}</p>
-          <p>Model: {car.model}</p>
+          <p>{car.brand} {car.model} rocznik: {car.year}</p>
         </div>
       ))}
+</label>
+</div>
 
 </div>
 );

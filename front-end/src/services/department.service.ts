@@ -10,6 +10,14 @@ class DepartmentDataService {
     return http.get<IDepartmentData>(`/rentals/${rentalId}/departments/${id}`);
   }
 
+  getById(id: string){
+    return http.get<IDepartmentData>(`/departments/${id}`);
+  }
+  
+  getAllDepartments() {
+    return http.get<Array<IDepartmentData>>("/departments");
+  }
+
   create(rentalId: string, data: IDepartmentData) {
     return http.post<IDepartmentData>(`/rentals/${rentalId}/departments`, data);
   }
