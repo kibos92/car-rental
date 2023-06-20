@@ -2,6 +2,7 @@ import {useQuery} from 'react-query';
 import carDataService from '../services/car.service';
 import departmentDataService from '../services/department.service';
 import rentalDataService from '../services/rental.service';
+import reservationService from '../services/reservation.service';
 
 interface SelectCarProps {
 rentalData: {
@@ -20,17 +21,36 @@ const getAllDepartments = useQuery({ queryKey: ['departments'], queryFn: departm
 
 const getAllRentals = useQuery({ queryKey: ['rentals'], queryFn: rentalDataService.getAll });
 
+const getAllReservations = useQuery({queryKey: ['reservations'], queryFn: reservationService.getAll});
+
 const cars: any[] = getAllCars.data?.data || [];
 
 const departments: any[] = getAllDepartments.data?.data || [];
 
 const rentals: any[] = getAllRentals.data?.data || [];
 
+const reservations: any[] = getAllReservations.data?.data || []
+
 const filterCarsByCity = () => {
   const departmentsByCity = departments.filter((department) => department.location === city);
 
   const filteredCars = departmentsByCity.flatMap((department) => {
     const departmentCars = cars.filter((car) => car.departmentId === department._id);
+
+    const hasReservation = departmentCars.some((car) =>
+      reservations.some(
+        (reservation) =>
+          reservation.carId === car._id && 
+          ((new Date(reservation.startDate) <= startDate && new Date(reservation.endDate) >= startDate) ||
+            (new Date(reservation.startDate) <= endDate && new Date(reservation.endDate) >= endDate) ||
+            (new Date(reservation.startDate) >= startDate && new Date(reservation.endDate) <= endDate))
+      )
+    );
+
+    if (hasReservation) {
+      return [];
+    }
+
     return departmentCars;
   });
 
