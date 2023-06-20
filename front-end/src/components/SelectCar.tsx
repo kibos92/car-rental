@@ -56,11 +56,9 @@ return (
             const rental = rentals.find((rental) => rental._id === department.rentalId);
 
             return (
-              <div className='box'>
-                <div key={car._id}>
-                <p>{car.brand} {car.model} rocznik: {car.year}</p>
+                <div className='box' key={car._id}>
+                <p>{car.brand} {car.model}, rocznik: {car.year}</p>
                 {rental && <p>Wypożyczalnia: {rental.title}</p>}
-              </div>
               </div>
             );
           })}

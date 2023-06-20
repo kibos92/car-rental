@@ -6,7 +6,7 @@ export default mongoose => {
             carId: { type: Schema.Types.ObjectId, ref: "Car" },
             userId: { type: Schema.Types.ObjectId, ref: "User" },
             startDate: { type: Date, required: true },
-            EndDate: { type: Date, required: true },
+            endDate: { type: Date, required: true },
             insurerName: { type: String, required: true },
             claimNumber: { type: String, required: true },
         },

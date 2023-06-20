@@ -5,6 +5,8 @@ import db from "./models/index.js";
 import rental from "./routes/rental.routes.js";
 import department from "./routes/department.routes.js";
 import car from "./routes/car.routes.js";
+import reservation from "./routes/reservation.routes.js";
+import user from "./routes/user.routes.js";
 
 const app = express();
 
@@ -30,6 +32,8 @@ db.mongoose
 rental(app);
 department(app);
 car(app);
+reservation(app);
+user(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
