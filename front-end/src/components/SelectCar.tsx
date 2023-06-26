@@ -69,7 +69,7 @@ const filteredCars = filterCarsByCity();
 return (
 <div>
 
-<div className="block">
+<div className="content">
   
   <h1>Lista dostępnych pojazdów:</h1>
 
@@ -92,9 +92,17 @@ return (
         </div>
           
         <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to="/ReservationForm" state={{ car: selectedCar, rentalData: rentalData }}>
-          <button className="button is-primary">Next</button>
-        </Link>
+        {selectedCar ? (
+      <Link to="/ReservationForm" state={{ car: selectedCar, rentalData: rentalData }}>
+        <button className="button is-primary">
+          Next
+        </button>
+      </Link>
+    ) : (
+      <button className="button is-primary" disabled>
+        Next
+      </button>
+    )}
         </div>
 
 </div>
