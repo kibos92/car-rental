@@ -101,7 +101,7 @@ const Rental = () => {
 
             <div className='block'>
       <form className='box'>
-      <div className="field">
+      <div className="field" >
       <label className='label'>Dodaj nowy oddział: </label>
 
       <div className="control">
