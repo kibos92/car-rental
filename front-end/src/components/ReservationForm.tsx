@@ -21,11 +21,19 @@ const ReservationForm = () => {
   const [claimNumber, setClaimNumber] = useState('');
 
   const handleDone = () => {
+    const startYear = rentalData.startDate.getFullYear();
+    const startMonth = rentalData.startDate.getMonth();
+    const startDay = rentalData.startDate.getDate();
+
+    const endYear = rentalData.endDate.getFullYear();
+    const endMonth = rentalData.endDate.getMonth();
+    const endDay = rentalData.endDate.getDate();
+
     addOne.mutate({
       carId: car._id,
       userId: car._id,
-      startDate: rentalData.startDate,
-      endDate: rentalData.endDate,
+      startDate: `${startYear}-${startMonth + 1}-${startDay}`,
+      endDate: `${endYear}-${endMonth + 1}-${endDay}`, 
       insurerName: insurerName,
       claimNumber: claimNumber,
     });

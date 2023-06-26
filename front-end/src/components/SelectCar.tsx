@@ -82,7 +82,7 @@ return (
             const rental = rentals.find((rental) => rental._id === department.rentalId);
 
             return (
-                <div className='button is-primary is-inverted' key={car._id} onClick={() => handleCarClick(car)}>
+                <div className='button is-primary is-inverted' key={car._id} onClick={() => handleCarClick(car)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <p>{car.brand} {car.model}, rocznik: {car.year} - </p>
                 {rental && <p> Wypożyczalnia: {rental.title}</p>}
               </div>

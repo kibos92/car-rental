@@ -24,6 +24,9 @@ const Navbar = () => {
             <a href='/rentals' className='navbar-item'>
               Rentals
             </a>
+            <a href='/reservations' className='navbar-item'>
+              Reservations
+            </a>
           </div>
         </div>
         <div className="navbar-end">
