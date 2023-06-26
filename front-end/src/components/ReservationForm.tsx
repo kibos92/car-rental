@@ -72,11 +72,9 @@ const ReservationForm = () => {
               />
             </div>
           </div>
-
           <Link to="/Done" className='button is-primary' onClick={handleDone}>
             Done
           </Link>
-
         </form>
       </div>
     </div>
