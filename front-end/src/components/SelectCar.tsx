@@ -1,4 +1,6 @@
 import {useQuery} from 'react-query';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import carDataService from '../services/car.service';
 import departmentDataService from '../services/department.service';
 import rentalDataService from '../services/rental.service';
@@ -14,6 +16,11 @@ endDate: Date;
 
 const SelectCar = ({ rentalData }: SelectCarProps) => {
 const { city, startDate, endDate } = rentalData;
+const [selectedCar, setSelectedCar] = useState<any>(null);
+
+const handleCarClick = (car: any) => {
+  setSelectedCar(car);
+};
 
 const getAllCars = useQuery({ queryKey: ['cars'], queryFn: carDataService.getAllCars });
 
@@ -62,27 +69,33 @@ const filteredCars = filterCarsByCity();
 return (
 <div>
 
-<label className="label">
-<p>Miasto: {city}</p>
-<p>Data rozpoczęcia: {startDate.toLocaleDateString()}</p>
-<p>Data zakończenia: {endDate.toLocaleDateString()}</p>
-</label>
+<div className="block">
+  
+  <h1>Lista dostępnych pojazdów:</h1>
 
-<h1>Lista dostępnych pojazdów:</h1>
+</div>
 
+<div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 <label className="label">
           {filteredCars.map((car: any) => {
             const department = departments.find((department) => department._id === car.departmentId);
             const rental = rentals.find((rental) => rental._id === department.rentalId);
 
             return (
-                <div className='box' key={car._id}>
-                <p>{car.brand} {car.model}, rocznik: {car.year}</p>
-                {rental && <p>Wypożyczalnia: {rental.title}</p>}
+                <div className='button is-primary is-inverted' key={car._id} onClick={() => handleCarClick(car)}>
+                <p>{car.brand} {car.model}, rocznik: {car.year} - </p>
+                {rental && <p> Wypożyczalnia: {rental.title}</p>}
               </div>
             );
           })}
         </label>
+        </div>
+          
+        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Link to="/ReservationForm" state={{ car: selectedCar, rentalData: rentalData }}>
+          <button className="button is-primary">Next</button>
+        </Link>
+        </div>
 
 </div>
 

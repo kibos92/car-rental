@@ -14,6 +14,7 @@ import Navbar from './components/NavBar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import Rental from './components/Rental';
+import ReservationForm from './components/ReservationForm'
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/ReservationForm",
+    element: <ReservationForm />,
   },
   {
     path: "/rentals",
