@@ -1,6 +1,6 @@
 import {useQuery} from 'react-query';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import carDataService from '../services/car.service';
 import departmentDataService from '../services/department.service';
 import rentalDataService from '../services/rental.service';
