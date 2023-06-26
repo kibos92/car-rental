@@ -18,8 +18,6 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const currentDay = new Date();
-
   const onSubmit = (e: any) => {
     e.preventDefault();
 
@@ -28,7 +26,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
       return;
     }
 
-    if (startDate < currentDay || endDate < currentDay || startDate > endDate ){
+    if (startDate > endDate ){
       alert("Please select the valid dates")
       return;
     }
