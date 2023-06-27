@@ -45,14 +45,25 @@ const filterCarsByCity = () => {
     const departmentCars = cars.filter((car) => car.departmentId === department._id);
 
     const hasReservation = departmentCars.some((car) =>
-      reservations.some(
-        (reservation) =>
-          reservation.carId === car._id && 
-          ((new Date(reservation.startDate) <= startDate && new Date(reservation.endDate) >= startDate) ||
-            (new Date(reservation.startDate) <= endDate && new Date(reservation.endDate) >= endDate) ||
-            (new Date(reservation.startDate) >= startDate && new Date(reservation.endDate) <= endDate))
-      )
-    );
+    reservations.some((reservation) => {
+      console.log("start///")
+      console.log("new Date(reservation.startDate",new Date(reservation.startDate));
+      console.log("startDate", startDate)
+
+      console.log("new Date(reservation.endDate",new Date(reservation.endDate));
+      console.log("endDate", endDate)
+ 
+      console.log(new Date(startDate).toISOString().substring(0, 10) >= new Date(reservation.startDate).toISOString().substring(0, 10))
+      console.log(new Date(startDate).toISOString().substring(0, 10) <= new Date(reservation.endDate).toISOString().substring(0, 10))
+      return (
+        reservation.carId === car._id &&
+        ((new Date(startDate).toISOString().substring(0, 10) >= new Date(reservation.startDate).toISOString().substring(0, 10)) &&
+        (new Date(startDate).toISOString().substring(0, 10) <= new Date(reservation.endDate).toISOString().substring(0, 10)) ||
+        (new Date(endDate).toISOString().substring(0, 10) >= new Date(reservation.startDate).toISOString().substring(0, 10)) &&
+        (new Date(endDate).toISOString().substring(0, 10) <= new Date(reservation.endDate).toISOString().substring(0, 10)))
+      );
+    })
+  );
 
     if (hasReservation) {
       return [];
