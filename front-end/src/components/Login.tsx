@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useQueryClient, useQuery, useMutation } from "react-query";
 import UserDataService from "../services/user.service";
 import IUserData from "../types/user.type";
 
@@ -8,38 +8,39 @@ function Login() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState<IUserData | null>(null);
 
-  const registerMutation = useMutation((userData: IUserData) =>
-    UserDataService.register(userData)
-  );
+  const queryClient = useQueryClient();
 
-  const loginMutation = useMutation((userData: IUserData) =>
-    UserDataService.login(userData)
-  );
+  const register = useMutation((newUser: IUserData) => {
+    return UserDataService.register(newUser);
+  }, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+  })
+  
+  const login = useMutation((userData: IUserData) => {
+    return UserDataService.login(userData);
+  }, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+  });
 
-  const getUserQuery = useQuery("user", UserDataService.get);
-
-  const register = () => {
-    const userData: IUserData = {
+  const handleRegister = () => {
+    const newUser: IUserData = {
       firstName: registerUsername,
       password: registerPassword,
     };
-
-    registerMutation.mutate(userData);
+    register.mutate(newUser);
   };
 
-  const login = () => {
+  const handleLogin = () => {
     const userData: IUserData = {
       firstName: loginUsername,
       password: loginPassword,
     };
-
-    loginMutation.mutate(userData);
-  };
-
-  const getUser = () => {
-    getUserQuery.refetch();
+    login.mutate(userData);
   };
 
   return (
@@ -54,7 +55,7 @@ function Login() {
           placeholder="password"
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
-        <button onClick={register}>Submit</button>
+        <button onClick={handleRegister}>Submit</button>
       </div>
 
       <div>
@@ -67,16 +68,10 @@ function Login() {
           placeholder="password"
           onChange={(e) => setLoginPassword(e.target.value)}
         />
-        <button onClick={login}>Submit</button>
+        <button onClick={handleLogin}>Submit</button>
       </div>
 
-      <div>
-        <h1>Get User</h1>
-        <button onClick={getUser}>Submit</button>
-        {getUserQuery.isSuccess && typeof getUserQuery.data === "object" ? (
-        <h1>Welcome Back {getUserQuery.data.firstName}</h1>
-        ) : null}
-      </div>
+      
     </div>
   );
 }

@@ -3,7 +3,7 @@ import IUserData from "../types/user.type";
 
 class UserDataService {
   get() {
-    return http.get<IUserData>(`/user/`);
+    return http.get<IUserData>(`/user`);
   }
 
   register(data: IUserData) {
