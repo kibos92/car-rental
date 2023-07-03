@@ -32,7 +32,9 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="buttons">
           <div className='navbar-item'>
-            <button className="button is-primary">Log In</button>
+          <a href='/Login'>
+          <button className="button is-primary">Log In</button>
+          </a>
             </div>
             <div className='navbar-item'>
               <button className="button is-primary">Log Out</button>
