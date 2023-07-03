@@ -7,6 +7,10 @@ import department from "./routes/department.routes.js";
 import car from "./routes/car.routes.js";
 import reservation from "./routes/reservation.routes.js";
 import user from "./routes/user.routes.js";
+import passport from "passport";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import configurePassport from './auth/passport-local.js';
 
 const app = express();
 
@@ -15,6 +19,20 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: "secretcode",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cookieParser("secretcode"));
+app.use(passport.initialize());
+app.use(passport.session());
+
+configurePassport(passport);
 
 db.mongoose
   .connect(db.url, {

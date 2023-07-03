@@ -4,16 +4,18 @@ import express from 'express';
 export default app => {
     const router = express.Router()
     
-    router.post("/", users.create);
+    router.post("/register", users.register);
+
+    router.post("login", users.login);
+
+    router.get("/user", users.findOne);
   
     router.get("/", users.findAll);
 
-    router.get("/:id", users.findOne);
-  
     router.put("/:id", users.update);
   
     router.delete("/:id", users.deleteOne);
   
-    app.use('/api/users', router);
+    app.use(router);
   };
   

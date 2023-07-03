@@ -26,7 +26,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
       return;
     }
 
-    if (startDate > endDate ){
+    if (startDate > endDate || (new Date(startDate).toISOString().substring(0, 10) < new Date().toISOString().substring(0, 10))){
       alert("Please select the valid dates")
       return;
     }

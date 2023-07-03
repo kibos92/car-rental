@@ -1,20 +1,34 @@
-import Local from 'passport-local'
-import { findUser, validatePassword } from './user'
+import User from "../models/user.model.js";
+import bcrypt from "bcryptjs";
+import { Strategy as LocalStrategy } from "passport-local";
 
-export const localStrategy = new Local.Strategy(function (
-  username,
-  password,
-  done
-) {
-  findUser({ username })
-    .then((user) => {
-      if (user && validatePassword(user, password)) {
-        done(null, user)
-      } else {
-        done(new Error('Invalid username and password combination'))
-      }
+export default function configurePassport(passport) {
+  passport.use(
+    new LocalStrategy((username, password, done) => {
+      User.findOne({ username }, (err, user) => {
+        if (err) throw err;
+        if (!user) return done(null, false);
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (err) throw err;
+          if (result === true) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        });
+      });
     })
-    .catch((error) => {
-      done(error)
-    })
-})
+  );
+
+  passport.serializeUser((user, cb) => {
+    cb(null, user.id);
+  });
+  passport.deserializeUser((id, cb) => {
+    User.findOne({ _id: id }, (err, user) => {
+      const userInformation = {
+        username: user.username,
+      };
+      cb(err, userInformation);
+    });
+  });
+}

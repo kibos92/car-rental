@@ -17,6 +17,7 @@ import Rental from './components/Rental';
 import ReservationForm from './components/ReservationForm'
 import Done from './components/Done'
 import Reservations from './components/Reservations';
+import Login from './components/Login';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/Login",
+    element: <Login />,
   },
   {
     path: "/ReservationForm",

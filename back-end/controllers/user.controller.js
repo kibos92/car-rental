@@ -2,49 +2,40 @@ import db from "../models/index.js";
 
 const User = db.users;
 
-const create = (req, res) => {
-    if (!req.body.lastName) {
-      res.status(400).send({ message: "Content can not be empty!" });
-      return;
-    }
+const register = (req, res) => {
+  User.findOne({ username: req.body.firstName }, (err, doc) => {
+    if (err) throw err;
+    if (doc) res.send("User Already Exists");
+    if (!doc) {
+      const hashedPassword = bcrypt.hash(req.body.password, 10);
 
-    const user = new User({
-        firstName:  req.body.firstName,
-        lastName:  req.body.lastName,
-        email:  req.body.email,
-        password:  req.body.password,
-        contactDetails:  req.body.contactDetails,
-        isAdmin:  req.body.isAdmin,
-        reservations:  req.body.reservations,
-    });
-  
-    user
-      .save(user)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the User."
-        });
+      const newUser = new User({
+        username: req.body.username,
+        password: hashedPassword,
       });
+
+      newUser.save();
+      res.send("User Created");
+    }
+  }
+  )};
+
+  const login = (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) throw err;
+      if (!user) res.send("No User Exists");
+      else {
+        req.logIn(user, (err) => {
+          if (err) throw err;
+          res.send("Successfully Authenticated");
+          console.log(req.user);
+        });
+      }
+    })(req, res, next);
   };
 
   const findOne = (req, res) => {
-    const id = req.params.id;
-  
-    User.findById(id)
-      .then(data => {
-        if (!data)
-          res.status(404).send({ message: "Not found User with id " + id });
-        else res.send(data);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .send({ message: "Error retrieving User with id=" + id });
-      });
+    res.send(req.user);
   };
 
   const findAll = (req, res) => {
@@ -106,4 +97,4 @@ const create = (req, res) => {
       });
   };
 
-  export default {create, findOne, findAll, update, deleteOne}
+  export default {register, login, findOne, findAll, update, deleteOne}
