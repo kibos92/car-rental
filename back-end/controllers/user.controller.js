@@ -1,24 +1,31 @@
 import db from "../models/index.js";
+import bcrypt from 'bcryptjs'
+import passport from 'passport'
 
 const User = db.users;
 
 const register = (req, res) => {
-  User.findOne({ username: req.body.firstName }, (err, doc) => {
+  User.findOne({ firstName: req.body.firstName }, (err, doc) => {
     if (err) throw err;
-    if (doc) res.send("User Already Exists");
-    if (!doc) {
-      const hashedPassword = bcrypt.hash(req.body.password, 10);
+    if (doc) {
+      res.send("User Already Exists");
+    } else {
+      bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+        if (err) throw err;
 
-      const newUser = new User({
-        username: req.body.username,
-        password: hashedPassword,
+        const newUser = new User({
+          firstName: req.body.firstName,
+          password: hashedPassword,
+        });
+
+        newUser.save((err) => {
+          if (err) throw err;
+          res.send("User Created");
+        });
       });
-
-      newUser.save();
-      res.send("User Created");
     }
-  }
-  )};
+  });
+};
 
   const login = (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {

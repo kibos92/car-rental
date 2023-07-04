@@ -6,7 +6,7 @@ export default app => {
     
     router.post("/register", users.register);
 
-    router.post("login", users.login);
+    router.post("/login", users.login);
 
     router.get("/user", users.findOne);
   
@@ -16,6 +16,6 @@ export default app => {
   
     router.delete("/:id", users.deleteOne);
   
-    app.use(router);
+    app.use('/api', router);
   };
   
