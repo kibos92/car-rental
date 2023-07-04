@@ -5,7 +5,7 @@ import passport from 'passport'
 const User = db.users;
 
 const register = (req, res) => {
-  User.findOne({ firstName: req.body.firstName }, (err, doc) => {
+  User.findOne({ username: req.body.username }, (err, doc) => {
     if (err) throw err;
     if (doc) {
       res.send("User Already Exists");
@@ -14,7 +14,7 @@ const register = (req, res) => {
         if (err) throw err;
 
         const newUser = new User({
-          firstName: req.body.firstName,
+          username: req.body.username,
           password: hashedPassword,
         });
 
@@ -27,20 +27,23 @@ const register = (req, res) => {
   });
 };
 
-  const login = (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (err) throw err;
-      if (!user) res.send("No User Exists");
-      else {
-        req.logIn(user, (err) => {
-          if (err) throw err;
-          res.send("Successfully Authenticated");
-          console.log(req.user);
-        });
-      }
-    })(req, res, next);
-  };
-
+const login = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      throw err;
+    }
+    if (!user) {
+      res.send("No User Exists");
+    } else {
+      req.logIn(user, (err) => {
+        if (err) {
+          throw err;
+        }
+        res.send("Successfully Authenticated");
+      });
+    }
+  })(req, res, next);
+};
   const findOne = (req, res) => {
     res.send(req.user);
   };

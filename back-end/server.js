@@ -14,9 +14,7 @@ import configurePassport from './auth/passport-local.js';
 
 const app = express();
 
-app.use(cors({
-  credentials: true,
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -25,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "secretcode",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
   })
 );

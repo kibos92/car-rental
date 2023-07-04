@@ -29,7 +29,7 @@ function Login() {
 
   const handleRegister = () => {
     const newUser: IUserData = {
-      firstName: registerUsername,
+      username: registerUsername,
       password: registerPassword,
     };
     register.mutate(newUser);
@@ -37,7 +37,7 @@ function Login() {
 
   const handleLogin = () => {
     const userData: IUserData = {
-      firstName: loginUsername,
+      username: loginUsername,
       password: loginPassword,
     };
     login.mutate(userData);
