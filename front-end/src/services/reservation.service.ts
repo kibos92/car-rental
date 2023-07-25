@@ -3,23 +3,23 @@ import IReservationData from "../types/reservation.type";
 
 class ReservationDataService {
   getAll() {
-    return http.get<Array<IReservationData>>("/reservations");
+    return http.get<Array<IReservationData>>("/api/reservations");
   }
 
   get(id: string) {
-    return http.get<IReservationData>(`/reservations/${id}`);
+    return http.get<IReservationData>(`/api/reservations/${id}`);
   }
 
   create(data: IReservationData) {
-    return http.post<IReservationData>("/reservations", data);
+    return http.post<IReservationData>("/api/reservations", data);
   }
 
   update(data: IReservationData, id: any) {
-    return http.put<any>(`/reservations/${id}`, data);
+    return http.put<any>(`/api/reservations/${id}`, data);
   }
 
   delete(id: any) {
-    return http.delete<any>(`/reservations/${id}`);
+    return http.delete<any>(`/api/reservations/${id}`);
   }
 }
 

@@ -3,23 +3,23 @@ import IRentalData from "../types/rental.type";
 
 class RentalDataService {
   getAll() {
-    return http.get<Array<IRentalData>>("/rentals");
+    return http.get<Array<IRentalData>>("/api/rentals");
   }
 
   get(id: string) {
-    return http.get<IRentalData>(`/rentals/${id}`);
+    return http.get<IRentalData>(`/api/rentals/${id}`);
   }
 
   create(data: IRentalData) {
-    return http.post<IRentalData>("/rentals", data);
+    return http.post<IRentalData>("/api/rentals", data);
   }
 
   update(data: IRentalData, id: any) {
-    return http.put<any>(`/rentals/${id}`, data);
+    return http.put<any>(`/api/rentals/${id}`, data);
   }
 
   delete(id: any) {
-    return http.delete<any>(`/rentals/${id}`);
+    return http.delete<any>(`/api/rentals/${id}`);
   }
 }
 

@@ -3,27 +3,27 @@ import IUserData from "../types/user.type";
 
 class UserDataService {
   get() {
-    return http.get<IUserData>("/user");
+    return http.get<IUserData>("/api/user");
   }
 
   register(data: IUserData) {
-    return http.post<IUserData>("/register", data);
+    return http.post<IUserData>("/api/register", data);
   }
 
   login(data: IUserData) {
-    return http.post<IUserData>("/login", data);
+    return http.post<IUserData>("/api/login", data);
   }
 
   getAll() {
-    return http.get<Array<IUserData>>("/users");
+    return http.get<Array<IUserData>>("/api/users");
   }
 
   update(data: IUserData, id: any) {
-    return http.put<any>(`/users/${id}`, data);
+    return http.put<any>(`/api/users/${id}`, data);
   }
 
   delete(id: any) {
-    return http.delete<any>(`/users/${id}`);
+    return http.delete<any>(`/api/users/${id}`);
   }
 }
 
