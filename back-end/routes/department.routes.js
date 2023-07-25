@@ -12,7 +12,7 @@ export default app => {
 
     router.get("departments/:id", departments.findOne)
 
-    router.get("/departments", departments.findAllDepartments);
+    router.get("/", departments.findAllDepartments);
   
     router.put("/:rentalId/departments/:id", departments.update);
   
@@ -20,6 +20,6 @@ export default app => {
   
     app.use('/api/rentals', router);
 
-    app.use(router);
+    app.use('/api/departments', router);
   };
   

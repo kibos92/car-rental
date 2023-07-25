@@ -8,7 +8,7 @@ export default app => {
   
     router.get("/:departmentId/cars", cars.findAll);
 
-    router.get("/cars", cars.findAllCars);
+    router.get("/", cars.findAllCars);
 
     router.get("/:departmentId/cars/:id", cars.findOne);
   
@@ -18,6 +18,6 @@ export default app => {
   
     app.use('/api/rentals/:rentalId/departments', router);
 
-    app.use(router);
+    app.use('/api/cars', router);
   };
   
