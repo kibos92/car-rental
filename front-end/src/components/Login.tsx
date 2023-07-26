@@ -27,6 +27,12 @@ function Login() {
     },
   });
 
+  const getUser = useQuery(["users"], () => {
+    return UserDataService.get();
+  });
+
+  const user = getUser.data?.data;
+
   const handleRegister = () => {
     const newUser: IUserData = {
       username: registerUsername,
@@ -71,7 +77,10 @@ function Login() {
         <button onClick={handleLogin}>Submit</button>
       </div>
 
-      
+      <div>
+        {user ? <h1>Welcome Back: {user.username}</h1> : null}
+      </div>
+
     </div>
   );
 }

@@ -8,6 +8,8 @@ export default app => {
 
     router.post("/login", users.login);
 
+    router.get("/logout", users.logout);
+
     router.get("/user", users.findOne);
   
     router.get("/", users.findAll);

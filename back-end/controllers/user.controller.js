@@ -44,6 +44,12 @@ const login = (req, res, next) => {
     }
   })(req, res, next);
 };
+
+const logout = (req, res) => {
+  req.logout();
+  res.send("Successfully Logged Out");
+};
+
   const findOne = (req, res) => {
     res.send(req.user);
   };
@@ -107,4 +113,4 @@ const login = (req, res, next) => {
       });
   };
 
-  export default {register, login, findOne, findAll, update, deleteOne}
+  export default {register, login, logout,  findOne, findAll, update, deleteOne}

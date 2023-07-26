@@ -14,6 +14,10 @@ class UserDataService {
     return http.post<IUserData>("/api/login", data);
   }
 
+  logout() {
+    return http.post<IUserData>("/api/logout");
+  }
+
   getAll() {
     return http.get<Array<IUserData>>("/api/users");
   }
