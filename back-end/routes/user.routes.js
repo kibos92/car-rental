@@ -8,7 +8,7 @@ export default app => {
 
     router.post("/login", users.login);
 
-    router.get("/logout", users.logout);
+    router.post("/logout", users.logout);
 
     router.get("/user", users.findOne);
   

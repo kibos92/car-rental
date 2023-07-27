@@ -1,37 +1,37 @@
 import { useState } from "react";
-import { useQueryClient, useQuery, useMutation } from "react-query";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import UserDataService from "../services/user.service";
 import IUserData from "../types/user.type";
+import { useUserContext } from "../hooks/useUser";
 
 function Login() {
+  const { setUser } = useUserContext();
+  const navigate = useNavigate();
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const queryClient = useQueryClient();
 
   const register = useMutation((newUser: IUserData) => {
     return UserDataService.register(newUser);
-  }, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
-    },
-  })
-  
-  const login = useMutation((userData: IUserData) => {
-    return UserDataService.login(userData);
-  }, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
-    },
   });
 
-  const getUser = useQuery(["users"], () => {
-    return UserDataService.get();
-  });
+  const login = useMutation(
+    (userData: IUserData) => {
+      return UserDataService.login(userData);
+    },
+    {
+      onSuccess: async () => {
+        const { data } = await UserDataService.get();
 
-  const user = getUser.data?.data;
+        setUser(data);
+
+        navigate("/");
+      },
+    }
+  );
 
   const handleRegister = () => {
     const newUser: IUserData = {
@@ -75,10 +75,6 @@ function Login() {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Submit</button>
-      </div>
-
-      <div>
-        {user ? <h1>Welcome Back: {user.username}</h1> : null}
       </div>
 
     </div>

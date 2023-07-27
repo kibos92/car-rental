@@ -19,7 +19,6 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.7.5",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
-    "proxy": "http://localhost:8080" 
+    "passport-local": "^1.0.0"
   }
 }

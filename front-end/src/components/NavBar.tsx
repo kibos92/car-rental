@@ -1,49 +1,75 @@
+import { useMutation } from "react-query";
+import { useUserContext } from "../hooks/useUser";
+import { Link, useNavigate } from "react-router-dom";
+import UserDataService from "../services/user.service";
+
 const Navbar = () => {
+  const { user, setUser } = useUserContext();
+  const navigate = useNavigate();
+
+  const logout = useMutation(
+    () => {
+      return UserDataService.logout();
+    },
+    {
+      onSuccess: async () => {
+        await UserDataService.get();
+
+        setUser(null);
+
+        navigate("/login");
+      },
+    }
+  );
     return (
-        <nav className='navbar is primary' role='navigation' aria-label='main navigation'>
-      <div className='navbar-brand'>
-    
-        <a
-          role='button'
-          className={'navbar-burger burger'}
-          aria-label='menu'
-          aria-expanded='false'
-          data-target='navbar'
-        >
-          <span aria-hidden='true'></span>
-          <span aria-hidden='true'></span>
-          <span aria-hidden='true'></span>
-        </a>
-      </div>
-      <div id='navbar' className='navbar-menu'>
-        <div className='navbar-start'>
-          <div className='navbar-item'>
-            <a href='/' className='navbar-item'>
-              Home
-            </a>
-            <a href='/rentals' className='navbar-item'>
+      <nav
+      className="navbar is primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbar" className="navbar-menu">
+        <div className="navbar-start">
+          <div className="navbar-item">
+            <Link to="/" className="navbar-item">
+            Home
+            </Link>
+            <Link to="/rentals" className="navbar-item">
               Rentals
-            </a>
-            <a href='/reservations' className='navbar-item'>
+              </Link>
+            <Link to="/reservations" className="navbar-item">
               Reservations
-            </a>
+              </Link>
           </div>
         </div>
         <div className="navbar-end">
+          {!!user && (
+            <div className="navbar-item">Logged in as {user.username}</div>
+          )}
           <div className="buttons">
-          <div className='navbar-item'>
-          <a href='/Login'>
-          <button className="button is-primary">Log In</button>
-          </a>
-            </div>
-            <div className='navbar-item'>
-              <button className="button is-primary">Log Out</button>
+          {!!user ? (
+              <div className="navbar-item">
+                <button
+                  className="button is-primary"
+                  onClick={() => {
+                    logout.mutate();
+                  }}
+                >
+                  Log Out
+                </button>
               </div>
-            </div>
-        </div>
-      </div>
-    </nav>
-    )
-  }
+            ) : (
+              <div className="navbar-item">
+                <Link to="/Login" className="navbar-item">
+                  <button className="button is-primary">Log In</button>
+                </Link>
+              </div>
+                 )}
+                 </div>
+               </div>
+             </div>
+           </nav>
+
+    );
+  };
   
   export default Navbar

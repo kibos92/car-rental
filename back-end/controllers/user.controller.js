@@ -46,8 +46,13 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  req.logout();
-  res.send("Successfully Logged Out");
+  req.logout((err) => {
+    if (err) {
+      res.status(500).send("Logout failed");
+    } else {
+      res.send("Successfully Logged Out");
+    }
+  });
 };
 
   const findOne = (req, res) => {

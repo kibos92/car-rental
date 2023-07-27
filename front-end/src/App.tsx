@@ -1,83 +1,105 @@
-import './App.css';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import {QueryClient, QueryClientProvider} from 'react-query';
+import {QueryClient, QueryClientProvider} from "react-query";
 
-import Rentals from './components/Rentals';
-import Department from './components/Department';
-import Car from './components/Car';
-import Home from './components/Home';
-import Navbar from './components/NavBar';
-import Hero from './components/Hero';
-import Footer from './components/Footer';
-import Rental from './components/Rental';
-import ReservationForm from './components/ReservationForm'
-import Done from './components/Done'
-import Reservations from './components/Reservations';
-import Login from './components/Login';
+import Rentals from "./components/Rentals";
+import Department from "./components/Department";
+import Car from "./components/Car";
+import Home from "./components/Home";
+
+import Rental from "./components/Rental";
+import ReservationForm from "./components/ReservationForm";
+import Done from "./components/Done";
+import Reservations from "./components/Reservations";
+import Login from "./components/Login";
+import { UserProvider } from "./hooks/useUser";
+import { Page } from "./components/Page";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Page>
+        <Home />
+      </Page>
+    ),
   },
   {
     path: "/Login",
-    element: <Login />,
+    element: (
+      <Page>
+        <Login />
+      </Page>
+    ),
   },
   {
     path: "/ReservationForm",
-    element: <ReservationForm />,
+    element: (
+      <Page>
+        <ReservationForm />
+      </Page>
+    ),
   },
   {
     path: "/Done",
-    element: <Done />,
+    element: (
+      <Page>
+        <Done />
+      </Page>
+    ),
   },
   {
     path: "/Reservations",
-    element: <Reservations />,
+    element: (
+      <Page>
+        <Reservations />
+      </Page>
+    ),
   },
   {
     path: "/rentals",
-    element: <Rentals />,
+    element: (
+      <Page>
+        <Rentals />
+      </Page>
+    ),
   },
   {
     path: "/rentals/:id",
-    element: <Rental />,
+    element: (
+      <Page>
+        <Rental />
+      </Page>
+    ),
   },
   {
     path: "/rentals/:rentalId/departments/:departmentId",
-    element: <Department />,
+    element: (
+      <Page>
+        <Department />
+      </Page>
+    ),
   },
   {
     path: "/rentals/:rentalId/departments/:departmentId/cars/:carId",
-    element: <Car />,
+    element: (
+      <Page>
+        <Car />
+      </Page>
+    ),
   },
 ]);
 
 function App() {
   return (
-    <div className='container'>
-      <div className='navbar'>
-        <Navbar />
-      </div>
-      <div className='hero'>
-      <Hero />
-      </div>
-      <div className='section'>
-    <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-    </QueryClientProvider>
-    </div>
-    <div className='footer' style={{padding: 5}}>
-      <Footer />
-    </div>
-    </div>
+    <UserProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </UserProvider>
     
   );
 }
