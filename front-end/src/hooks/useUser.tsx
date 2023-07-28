@@ -1,13 +1,9 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-
-interface UserState {
-  username: string;
-  isAdmin: boolean;
-}
+import IUserData from "../types/user.type";
 
 interface IUserContext {
-  user: UserState | null;
-  setUser: (user: UserState | null) => void;
+  user: IUserData | null;
+  setUser: (user: IUserData | null) => void;
 }
 
 const UserContext = createContext<IUserContext>({
@@ -16,7 +12,7 @@ const UserContext = createContext<IUserContext>({
 });
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<UserState | null>(null);
+  const [user, setUser] = useState<IUserData | null>(null);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

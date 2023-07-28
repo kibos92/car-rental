@@ -1,18 +1,22 @@
 import http from "../http-common";
 import IUserData from "../types/user.type";
-import ILoginData from "../types/login.type";
+
+export interface UserCredentials {
+  username: string;
+  password: string;
+}
 
 class UserDataService {
   get() {
     return http.get<IUserData>("/api/user");
   }
 
-  register(data: IUserData) {
+  register(data: UserCredentials) {
     return http.post<IUserData>("/api/register", data);
   }
 
-  login(data: ILoginData) {
-    return http.post<ILoginData>("/api/login", data);
+  login(data: UserCredentials) {
+    return http.post<IUserData>("/api/login", data);
   }
 
   logout() {

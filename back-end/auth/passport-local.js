@@ -29,6 +29,7 @@ export default function configurePassport(passport) {
     User.findOne({ _id: id }, (err, user) => {
       const userInformation = {
         username: user.username,
+        isAdmin: user.isAdmin,
       };
       cb(err, userInformation);
     });
