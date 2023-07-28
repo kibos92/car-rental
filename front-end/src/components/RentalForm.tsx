@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
+import { useUserContext } from "../hooks/useUser";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -17,6 +18,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const { user } = useUserContext();
 
   const onSubmit = (e: any) => {
     e.preventDefault();
@@ -28,6 +30,11 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
 
     if (startDate > endDate || (new Date(startDate).toISOString().substring(0, 10) < new Date().toISOString().substring(0, 10))){
       alert("Please select the valid dates")
+      return;
+    }
+
+    if (!user) {
+      alert("Please log in")
       return;
     }
 

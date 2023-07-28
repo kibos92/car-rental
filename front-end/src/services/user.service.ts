@@ -1,5 +1,6 @@
 import http from "../http-common";
 import IUserData from "../types/user.type";
+import ILoginData from "../types/login.type";
 
 class UserDataService {
   get() {
@@ -10,8 +11,8 @@ class UserDataService {
     return http.post<IUserData>("/api/register", data);
   }
 
-  login(data: IUserData) {
-    return http.post<IUserData>("/api/login", data);
+  login(data: ILoginData) {
+    return http.post<ILoginData>("/api/login", data);
   }
 
   logout() {

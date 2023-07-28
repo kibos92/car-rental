@@ -8,6 +8,6 @@ export default interface IUserData {
     //lastName: string,
    // email: string,
     //contactDetails: string,
-    //isAdmin: boolean,
+    isAdmin: boolean,
     //reservations: Schema.Types.ObjectId[]
   }

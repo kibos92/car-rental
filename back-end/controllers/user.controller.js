@@ -16,6 +16,7 @@ const register = (req, res) => {
         const newUser = new User({
           username: req.body.username,
           password: hashedPassword,
+          isAdmin: false
         });
 
         newUser.save((err) => {

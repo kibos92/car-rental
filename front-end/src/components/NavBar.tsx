@@ -33,12 +33,16 @@ const Navbar = () => {
             <Link to="/" className="navbar-item">
             Home
             </Link>
+            {!!user && user.isAdmin &&(
             <Link to="/rentals" className="navbar-item">
               Rentals
               </Link>
+              )}
+              {!!user && (
             <Link to="/reservations" className="navbar-item">
               Reservations
               </Link>
+              )}
           </div>
         </div>
         <div className="navbar-end">

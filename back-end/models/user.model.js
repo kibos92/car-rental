@@ -9,7 +9,7 @@ export default mongoose => {
            // lastName: { type: String, required: true },
            // email: { type: String, required: true },
            // contactDetails: { type: String, required: true },
-           // isAdmin: { type: Boolean, required: true },
+           isAdmin: { type: Boolean, required: true },
             //reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }], 
         },
         { timestamps: true }

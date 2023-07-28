@@ -2,6 +2,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 
 interface UserState {
   username: string;
+  isAdmin: boolean;
 }
 
 interface IUserContext {

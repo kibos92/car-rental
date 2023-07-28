@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import UserDataService from "../services/user.service";
 import IUserData from "../types/user.type";
+import ILoginData from "../types/login.type";
 import { useUserContext } from "../hooks/useUser";
 
 function Login() {
@@ -19,7 +20,7 @@ function Login() {
   });
 
   const login = useMutation(
-    (userData: IUserData) => {
+    (userData: ILoginData) => {
       return UserDataService.login(userData);
     },
     {
@@ -37,14 +38,15 @@ function Login() {
     const newUser: IUserData = {
       username: registerUsername,
       password: registerPassword,
+      isAdmin: false
     };
     register.mutate(newUser);
   };
 
   const handleLogin = () => {
-    const userData: IUserData = {
+    const userData: ILoginData = {
       username: loginUsername,
-      password: loginPassword,
+      password: loginPassword
     };
     login.mutate(userData);
   };
