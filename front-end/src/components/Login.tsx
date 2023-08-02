@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import UserDataService, { UserCredentials } from "../services/user.service";
+import UserDataService, { LoginCredentials } from "../services/user.service";
 import { useUserContext } from "../hooks/useUser";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function Login() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const login = useMutation(
-    (userData: UserCredentials) => {
+    (userData: LoginCredentials) => {
       return UserDataService.login(userData);
     },
     {
@@ -30,7 +30,7 @@ function Login() {
   );
 
   const handleLogin = () => {
-    const userData: UserCredentials = {
+    const userData: LoginCredentials = {
       username: loginUsername,
       password: loginPassword
     };

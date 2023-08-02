@@ -20,7 +20,12 @@ const register = (req, res) => {
         const newUser = new User({
           username: req.body.username,
           password: hashedPassword,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          contactDetails: req.body.contactDetails,
           isAdmin: false,
+          reservations: req.body.reservations
         });
 
         newUser.save((err) => {

@@ -1,7 +1,18 @@
 import http from "../http-common";
 import IUserData from "../types/user.type";
+import { Schema } from "mongoose";
 
-export interface UserCredentials {
+export interface RegisterCredentials {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  contactDetails: string;
+  reservations: Schema.Types.ObjectId[];
+}
+
+export interface LoginCredentials {
   username: string;
   password: string;
 }
@@ -11,11 +22,11 @@ class UserDataService {
     return http.get<IUserData>("/api/user");
   }
 
-  register(data: UserCredentials) {
+  register(data: RegisterCredentials) {
     return http.post<IUserData>("/api/register", data);
   }
 
-  login(data: UserCredentials) {
+  login(data: LoginCredentials) {
     return http.post<IUserData>("/api/login", data);
   }
 
