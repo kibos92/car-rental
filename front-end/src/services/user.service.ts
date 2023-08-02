@@ -1,6 +1,5 @@
 import http from "../http-common";
 import IUserData from "../types/user.type";
-import { Schema } from "mongoose";
 
 export interface RegisterCredentials {
   username: string;
@@ -9,7 +8,6 @@ export interface RegisterCredentials {
   lastName: string;
   email: string;
   contactDetails: string;
-  reservations: Schema.Types.ObjectId[];
 }
 
 export interface LoginCredentials {

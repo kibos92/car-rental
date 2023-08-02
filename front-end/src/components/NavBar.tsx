@@ -38,7 +38,7 @@ const Navbar = () => {
               Rentals
               </Link>
               )}
-              {!!user && (
+              {!!user && user.isAdmin && (
             <Link to="/reservations" className="navbar-item">
               Reservations
               </Link>

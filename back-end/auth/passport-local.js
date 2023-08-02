@@ -28,6 +28,7 @@ export default function configurePassport(passport) {
   passport.deserializeUser((id, cb) => {
     User.findOne({ _id: id }, (err, user) => {
       const userInformation = {
+        _id: user._id,
         username: user.username,
         isAdmin: user.isAdmin,
       };

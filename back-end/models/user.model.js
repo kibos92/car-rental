@@ -1,5 +1,3 @@
-import { Schema } from "mongoose";
-
 export default (mongoose) => {
     var schema = mongoose.Schema(
       {
@@ -9,8 +7,7 @@ export default (mongoose) => {
         lastName: { type: String, required: true },
         email: { type: String, required: true },
         contactDetails: { type: String, required: true },
-        isAdmin: { type: Boolean, required: true },
-        reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
+        isAdmin: { type: Boolean, required: true }
       },
       { timestamps: true }
     );

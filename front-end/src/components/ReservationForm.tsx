@@ -2,11 +2,13 @@ import { useLocation, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useQueryClient, useMutation } from 'react-query';
 import ReservationDataService from '../services/reservation.service';
+import { useUserContext } from "../hooks/useUser";
 
 const ReservationForm = () => {
   const location = useLocation();
   const { car } = location.state;
   const { rentalData } = location.state;
+  const { user } = useUserContext();
 
   const queryClient = useQueryClient();
 
@@ -31,7 +33,7 @@ const ReservationForm = () => {
 
     addOne.mutate({
       carId: car._id,
-      userId: car._id,
+      userId: user?._id,
       startDate: `${startYear}-${startMonth + 1}-${startDay}`,
       endDate: `${endYear}-${endMonth + 1}-${endDay}`, 
       insurerName: insurerName,
@@ -49,6 +51,7 @@ const ReservationForm = () => {
         <p>Data rozpoczęcia: {rentalData.startDate.toLocaleDateString()}</p>
         <p>Data zakończenia: {rentalData.endDate.toLocaleDateString()}</p>
         <p>Wybrany pojazd: {car.brand} {car.model}</p>
+        <p>Użytkownik: {JSON.stringify(user)}</p>
       </label>
 
       <div className='block'>

@@ -12,7 +12,7 @@ export default app => {
 
     router.get("/user", users.findOne);
   
-    router.get("/", users.findAll);
+    router.get("/users", users.findAll);
 
     router.put("/:id", users.update);
   

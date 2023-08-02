@@ -32,8 +32,7 @@ function Register() {
       firstName: registerFirstName,
       lastName: registerLastName,
       email: registerEmail,
-      contactDetails: registerContactDetails,
-      reservations: []
+      contactDetails: registerContactDetails
     };
     register.mutate(newUser);
     setRegisterUsername("");

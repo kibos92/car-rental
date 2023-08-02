@@ -24,8 +24,7 @@ const register = (req, res) => {
           lastName: req.body.lastName,
           email: req.body.email,
           contactDetails: req.body.contactDetails,
-          isAdmin: false,
-          reservations: req.body.reservations
+          isAdmin: false
         });
 
         newUser.save((err) => {
