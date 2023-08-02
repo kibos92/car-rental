@@ -6,21 +6,27 @@ const User = db.users;
 
 const register = (req, res) => {
   User.findOne({ username: req.body.username }, (err, doc) => {
-    if (err) throw err;
+    if (err) {
+      return res.status(500).send("Internal Server Error");
+    }
     if (doc) {
-      res.send("User Already Exists");
+      return res.status(400).send("User Already Exists");
     } else {
       bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
-        if (err) throw err;
+        if (err) {
+          return res.status(500).send("Internal Server Error");
+        }
 
         const newUser = new User({
           username: req.body.username,
           password: hashedPassword,
-          isAdmin: false
+          isAdmin: false,
         });
 
         newUser.save((err) => {
-          if (err) throw err;
+          if (err) {
+            return res.status(500).send("Internal Server Error");
+          }
           res.send("User Created");
         });
       });
@@ -29,16 +35,16 @@ const register = (req, res) => {
 };
 
 const login = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate("local", (err, user, info) => {
     if (err) {
-      throw err;
+      return res.status(500).send("Internal Server Error");
     }
     if (!user) {
-      res.send("No User Exists");
+      return res.status(400).send("No User Exists");
     } else {
       req.logIn(user, (err) => {
         if (err) {
-          throw err;
+          return res.status(500).send("Internal Server Error");
         }
         res.send("Successfully Authenticated");
       });

@@ -13,6 +13,7 @@ import ReservationForm from "./components/ReservationForm";
 import Done from "./components/Done";
 import Reservations from "./components/Reservations";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import { UserProvider } from "./hooks/useUser";
 import { Page } from "./components/Page";
 
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
     element: (
       <Page>
         <Login />
+      </Page>
+    ),
+  },
+  {
+    path: "/Register",
+    element: (
+      <Page>
+        <Register />
       </Page>
     ),
   },
