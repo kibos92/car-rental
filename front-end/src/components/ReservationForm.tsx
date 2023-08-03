@@ -37,7 +37,7 @@ const ReservationForm = () => {
       startDate: `${startYear}-${startMonth + 1}-${startDay}`,
       endDate: `${endYear}-${endMonth + 1}-${endDay}`, 
       insurerName: insurerName,
-      claimNumber: insurerName,
+      claimNumber: claimNumber,
     });
   };
 
