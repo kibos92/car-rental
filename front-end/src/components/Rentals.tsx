@@ -29,12 +29,15 @@ const Rentals = () => {
 
     return (
       <div>
+        <div className="columns">
+        <div className="column">
+
         <div className='block'>
       <form className='box'>
       <div className="field">
       <label className='label'>Dodaj nową wypożyczalnie: </label>
       <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj nazwę'
           value={rentalName}
@@ -42,7 +45,7 @@ const Rentals = () => {
         />
         </div>
         <div className="control">
-        <input
+        <input className="input"
           type='address'
           placeholder='Dodaj adres'
           value={rentalAddress}
@@ -50,7 +53,7 @@ const Rentals = () => {
         />
         </div>
         <div className="control">
-        <input
+        <input className="input"
           type='address'
           placeholder='Dodaj kontakt'
           value={rentalContact}
@@ -76,12 +79,15 @@ const Rentals = () => {
 
       </form>
       </div>
+      </div>
 
+      <div className="column">
+      <div className='block'>
         <label className='label'>Lista wypożyczalni: </label>
-        <div className='block'>
+
       <ul>
         {getAll.data?.data.map(rental => (
-          <li className='block' key={rental._id}><Link to={`/rentals/${rental._id}`}>{rental.title} </Link>
+          <li key={rental._id}><Link to={`/rentals/${rental._id}`}>{rental.title} </Link>
           <button
         className='delete'
         onClick={() => {
@@ -92,6 +98,9 @@ const Rentals = () => {
         ))}
       </ul>
       </div>
+</div>
+      </div>
+
     </div>
     )
   }

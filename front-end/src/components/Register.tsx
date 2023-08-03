@@ -41,11 +41,11 @@ function Register() {
 
   return (
     <div>
-        <div className="content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="content">
           <h1>Register</h1>
         </div>
 
-        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
 
 <div className="box">
   
@@ -95,7 +95,7 @@ function Register() {
 
 </div>
 
-<div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+<div className="block">
 <button className="button is-primary"  onClick={handleRegister}>Submit</button>
 </div>
 

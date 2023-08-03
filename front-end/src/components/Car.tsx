@@ -47,11 +47,11 @@ const Car = () => {
   return (
     <div>
 
+<div className="block">
 <label className='label'>Marka: </label>
 
-<div className="block">
   <Modal title={car?.brand}>
-    <input
+    <input className="input"
       type="text"
       value={car?.brand || ''}
       onChange={(e) => handleBrandChange(e.target.value)}
@@ -59,11 +59,11 @@ const Car = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Model: </label>
 
-            <div className="block">
   <Modal title={car?.model}>
-    <input
+    <input className="input"
       type="text"
       value={car?.model || ''}
       onChange={(e) => handleModelChange(e.target.value)}
@@ -71,11 +71,11 @@ const Car = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Numer rejestracyjny: </label>
 
-            <div className="block">
   <Modal title={car?.plateNumber}>
-    <input
+    <input className="input"
       type="text"
       value={car?.plateNumber || ''}
       onChange={(e) => handlePlateNumberChange(e.target.value)}
@@ -83,11 +83,11 @@ const Car = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Rok produkcji: </label>
 
-            <div className="block">
   <Modal title={car?.year}>
-    <input
+    <input className="input"
       type="text"
       value={car?.year || ''}
       onChange={(e) => handleYearChange(e.target.value)}
@@ -95,7 +95,9 @@ const Car = () => {
   </Modal>
 </div>
 
+<div className='block'>
             <Link to={`/rentals/${rentalId}/departments/${departmentId}/`} className="button is-primary">Return</Link>
+            </div>
 
     </div>
   )

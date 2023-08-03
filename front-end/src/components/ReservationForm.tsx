@@ -16,7 +16,7 @@ const ReservationForm = () => {
     mutationFn: ReservationDataService.create,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['reservations'] });
-    },
+    }
   });
 
   const [insurerName, setInsurerName] = useState('');
@@ -37,29 +37,34 @@ const ReservationForm = () => {
       startDate: `${startYear}-${startMonth + 1}-${startDay}`,
       endDate: `${endYear}-${endMonth + 1}-${endDay}`, 
       insurerName: insurerName,
-      claimNumber: claimNumber,
+      claimNumber: insurerName,
     });
   };
+
+  
+const isDisabled = !insurerName || !claimNumber;
 
   return (
     <div>
       <div className="content">
         <h1>Szczegóły rezerwacji:</h1>
       </div>
+
+      <div className='block'>
       <label className="label">
         <p>Miasto: {rentalData.city}</p>
         <p>Data rozpoczęcia: {rentalData.startDate.toLocaleDateString()}</p>
         <p>Data zakończenia: {rentalData.endDate.toLocaleDateString()}</p>
         <p>Wybrany pojazd: {car.brand} {car.model}</p>
-        <p>Użytkownik: {JSON.stringify(user)}</p>
       </label>
+      </div>
 
       <div className='block'>
         <form className='box'>
           <div className="field">
             <label className='label'>Dodaj dane szkodowe: </label>
             <div className="control">
-              <input
+              <input className='input'
                 type='name'
                 placeholder='Ubezpieczyciel sprawcy'
                 value={insurerName}
@@ -67,7 +72,7 @@ const ReservationForm = () => {
               />
             </div>
             <div className="control">
-              <input
+              <input className='input'
                 type='address'
                 placeholder='Numer szkody'
                 value={claimNumber}
@@ -75,9 +80,13 @@ const ReservationForm = () => {
               />
             </div>
           </div>
-          <Link to="/Done" className='button is-primary' onClick={handleDone}>
-            Done
-          </Link>
+          <Link
+    to={isDisabled ? "#" : "/Done"}
+    className={`button is-primary ${isDisabled ? "disabled" : ""}`} 
+    onClick={isDisabled ? (e) => e.preventDefault() : handleDone}
+  >
+    Done
+  </Link>
         </form>
       </div>
     </div>

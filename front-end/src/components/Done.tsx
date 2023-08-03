@@ -3,9 +3,9 @@ const Done = () => {
       <div>
         <div className="content">
 
-<h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Dokonałeś rezerwacji !</h1>
+<h1>Dokonałeś rezerwacji!</h1>
 
-<h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Oczekuj kontaktu ze strony wypożyczalni</h3>
+<h3>Oczekuj kontaktu ze strony wypożyczalni</h3>
 
 </div>
       </div>

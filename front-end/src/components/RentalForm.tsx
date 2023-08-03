@@ -53,7 +53,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
         samochodu.</h1>
 
       </div>
-      <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="block">
         <form className="box" onSubmit={onSubmit}>
           <div className="field">
             <label className="label">Wybierz miasto: </label>
@@ -87,7 +87,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
             />
           </div>
 
-          <div className="field" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="field">
             <div className="control">
               <input
                 type="submit"

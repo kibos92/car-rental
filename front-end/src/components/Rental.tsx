@@ -63,11 +63,14 @@ const Rental = () => {
       
       return (
         <div>
+<div className='columns'>
+
+<div className='column'>
+<div className="block">
 <label className='label'>Nazwa: </label>
 
-<div className="block">
   <Modal title={rental?.title}>
-    <input
+    <input className="input"
       type="text"
       value={rental?.title || ''}
       onChange={(e) => handleTitleChange(e.target.value)}
@@ -75,11 +78,11 @@ const Rental = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Adres główny: </label>
 
-            <div className="block">
   <Modal title={rental?.headquarters}>
-    <input
+    <input className="input"
       type="text"
       value={rental?.headquarters || ''}
       onChange={(e) => handleHeadquartersChange(e.target.value)}
@@ -87,25 +90,27 @@ const Rental = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Dane kontaktowe: </label>
 
-           <div className="block">
   <Modal title={rental?.contactDetails}>
-    <input
+    <input className="input"
       type="text"
       value={rental?.contactDetails || ''}
       onChange={(e) => handleContactDetailsChange(e.target.value)}
     />
   </Modal>
 </div>
+</div>
 
+<div className='column'>
             <div className='block'>
       <form className='box'>
       <div className="field" >
       <label className='label'>Dodaj nowy oddział: </label>
 
       <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj lokalizację'
           value={departmentLocation}
@@ -114,7 +119,7 @@ const Rental = () => {
         </div>
 
         <div className="control">
-        <input
+        <input className="input"
           type='address'
           placeholder='Dodaj adres'
           value={departmentAddress}
@@ -123,15 +128,14 @@ const Rental = () => {
         </div>
 
         <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj kontakt'
           value={departmentContact}
           onChange={(e) => setDepartmentContact(e.target.value)}
         />
         </div>
-
-        </div>
+</div>
 
       <button
         className='button is-primary'
@@ -151,17 +155,19 @@ const Rental = () => {
 
       </form>
       </div>
+      </div>
 
-      <label className='label'>Lista oddziałów: </label>
+<div className='column'>
       <div className='block'>
+      <label className='label'>Lista oddziałów: </label>
+
       <ul>
         {getAll.data?.data
   .filter(department => department.rentalId === id)
   .map(department => (
-    <li className='block' key={department._id}>
+    <li key={department._id}>
       <Link to={`/rentals/${id}/departments/${department._id}`}>
-        {department.location}
-      </Link>
+        {department.location} </Link>
       <button
         className='delete'
         onClick={() => {
@@ -172,8 +178,13 @@ const Rental = () => {
 ))}
       </ul>
       </div>
+
+      </div>
+            </div>
             
+            <div className='block'>
             <Link to={`/rentals/`} className="button is-primary">Return</Link>
+            </div>
         </div>
       )
   }

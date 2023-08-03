@@ -27,7 +27,7 @@ const Reservations = () => {
           const userName = user ? `${user.username}` : '';
 
           return (
-            <li className='block' key={reservation._id}>
+            <li key={reservation._id}>
               Reservation number: {reservation._id},
               User: {userName}, 
               Start Date: {reservation.startDate.slice(0, 10)}, 

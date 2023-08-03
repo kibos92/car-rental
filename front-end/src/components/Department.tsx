@@ -67,11 +67,14 @@ const Department = () => {
 
     return (
       <div>
+<div className='columns'>
+
+<div className='column'>
+<div className="block">
         <label className='label'>Oddział: </label>
 
-          <div className="block">
   <Modal title={department?.location}>
-    <input
+    <input className="input"
       type="text"
       value={department?.location || ''}
       onChange={(e) => handleLocationChange(e.target.value)}
@@ -79,11 +82,11 @@ const Department = () => {
   </Modal>
 </div>
 
+<div className="block">
             <label className='label'>Adres oddziału: </label>
 
-            <div className="block">
   <Modal title={department?.address}>
-    <input
+    <input className="input"
       type="text"
       value={department?.address || ''}
       onChange={(e) => handleAddressChange(e.target.value)}
@@ -91,27 +94,27 @@ const Department = () => {
   </Modal>
 </div>
 
-
+<div className="block">
             <label className='label'>Dane kontaktowe: </label>
 
-            <div className="block">
   <Modal title={department?.contactDetails}>
-    <input
+    <input className="input"
       type="text"
       value={department?.contactDetails || ''}
       onChange={(e) => handleContactDetailsChange(e.target.value)}
     />
   </Modal>
 </div>
+</div>
 
-
+<div className='column'>
             <div className='block'>
       <form className='box'>
       <div className="field">
       <label className='label'>Dodaj nowy pojazd: </label>
 
       <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj markę'
           value={carBrand}
@@ -120,7 +123,7 @@ const Department = () => {
         </div>
 
         <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj model'
           value={carModel}
@@ -129,16 +132,16 @@ const Department = () => {
         </div>
 
         <div className="control">
-        <input
+        <input className="input"
           type='name'
-          placeholder='Dodaj numer rejestracyjny'
+          placeholder='Dodaj nr rejestracyjny'
           value={carPlateNumber}
           onChange={(e) => setCarPlateNumber(e.target.value)}
         />
         </div>
 
         <div className="control">
-        <input
+        <input className="input"
           type='name'
           placeholder='Dodaj rok produkcji'
           value={carYear}
@@ -166,17 +169,19 @@ const Department = () => {
 
       </form>
       </div>
+      </div>
 
-      <label className='label'>Lista pojazdów: </label>
+<div className='column'>
       <div className='block'>
+      <label className='label'>Lista pojazdów: </label>
+
       <ul>
         {getAll.data?.data
   .filter(car => car.departmentId === departmentId)
   .map(car => (
-    <li className='block' key={car._id}>
+    <li key={car._id}>
       <Link to={`/rentals/${rentalId}/departments/${departmentId}/cars/${car._id}`}>
-        {car.plateNumber}
-      </Link>
+        {car.plateNumber} </Link>
       <button
         className='delete'
         onClick={() => {
@@ -187,9 +192,12 @@ const Department = () => {
 ))}
       </ul>
       </div>
-            
-            <Link to={`/rentals/${rentalId}/`} className="button is-primary">Return</Link>
+      </div>
+      </div>
 
+            <div className='block'>
+            <Link to={`/rentals/${rentalId}/`} className="button is-primary">Return</Link>
+            </div>
       </div>
     )
   }

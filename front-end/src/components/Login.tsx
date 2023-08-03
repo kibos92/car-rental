@@ -41,11 +41,11 @@ function Login() {
 
   return (
       <div>
-         <div className="content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+         <div className="content">
           <h1>Login</h1>
         </div>
 
-        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
 
         <div className="box">
           
@@ -67,15 +67,15 @@ function Login() {
 
         </div>
 
-        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
         <button className="button is-primary"  onClick={handleLogin}>Submit</button>
         </div>
 
-        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
           <p>Nie masz konta? Zarejestruj się: </p>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
           <Link to="/Register">
         <button className="button is-primary">Register</button>
         </Link>

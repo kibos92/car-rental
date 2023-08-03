@@ -77,23 +77,25 @@ return (
 
 </div>
 
-<div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+<div className="block">
 <label className="label">
           {filteredCars.map((car: any) => {
             const department = departments.find((department) => department._id === car.departmentId);
             const rental = rentals.find((rental) => rental._id === department.rentalId);
 
             return (
-                <div className='button is-primary is-inverted' key={car._id} onClick={() => handleCarClick(car)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <p>{car.brand} {car.model}, rocznik: {car.year} - </p>
+              <ul>
+                <div className='button is-primary is-inverted' key={car._id} onClick={() => handleCarClick(car)}>
+                <li>{car.brand} {car.model}, rocznik: {car.year} - </li>
                 {rental && <p> Wypożyczalnia: {rental.title}</p>}
               </div>
+              </ul>
             );
           })}
         </label>
         </div>
           
-        <div className="block" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="block">
         {selectedCar ? (
       <Link to="/ReservationForm" state={{ car: selectedCar, rentalData: rentalData }}>
         <button className="button is-primary">
@@ -105,6 +107,7 @@ return (
         Next
       </button>
     )}
+
         </div>
 
 </div>

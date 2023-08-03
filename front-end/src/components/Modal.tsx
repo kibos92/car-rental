@@ -22,17 +22,12 @@ const Modal = ({ title, children }: ModalProps) => {
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">{title}</p>
-            <button
-              className="delete"
-              aria-label="close"
-              onClick={toggleModal}
-            ></button>
+            <p className="modal-card-title">Zmień wartość</p>
           </header>
           <section className="modal-card-body">{children}</section>
           <footer className="modal-card-foot">
             <button className="button is-success" onClick={toggleModal}>
-              Return
+              Save
             </button>
           </footer>
         </div>
