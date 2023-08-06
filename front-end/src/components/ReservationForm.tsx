@@ -85,7 +85,7 @@ const isDisabled = !insurerName || !claimNumber;
     className={`button is-primary ${isDisabled ? "disabled" : ""}`} 
     onClick={isDisabled ? (e) => e.preventDefault() : handleDone}
   >
-    Done
+    Zatwierdź
   </Link>
         </form>
       </div>

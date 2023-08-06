@@ -96,7 +96,7 @@ const Car = () => {
 </div>
 
 <div className='block'>
-            <Link to={`/rentals/${rentalId}/departments/${departmentId}/`} className="button is-primary">Return</Link>
+            <Link to={`/rentals/${rentalId}/departments/${departmentId}/`} className="button is-primary">Powrót</Link>
             </div>
 
     </div>

@@ -92,7 +92,7 @@ const RentalForm = ({ onSelect }: RentalFormProps) => {
               <input
                 type="submit"
                 className="button is-primary"
-                value="Next"
+                value="Dalej"
               />
             </div>
           </div>

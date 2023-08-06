@@ -164,7 +164,7 @@ const Department = () => {
           })
         }}
       >
-        Add Car
+        Dodaj pojazd
       </button>
 
       </form>
@@ -196,7 +196,7 @@ const Department = () => {
       </div>
 
             <div className='block'>
-            <Link to={`/rentals/${rentalId}/`} className="button is-primary">Return</Link>
+            <Link to={`/rentals/${rentalId}/`} className="button is-primary">Powrót</Link>
             </div>
       </div>
     )

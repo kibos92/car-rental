@@ -42,7 +42,7 @@ function Login() {
   return (
       <div>
          <div className="content">
-          <h1>Login</h1>
+          <h1>Zaloguj się</h1>
         </div>
 
         <div className="block">
@@ -50,14 +50,14 @@ function Login() {
         <div className="box">
           
         <div className="field">
-        <label className="label">Username:</label>
+        <label className="label">Nazwa użytkownika:</label>
         <div className="control">
         <input className="input" type="text" placeholder="Username" onChange={(e) => setLoginUsername(e.target.value)}/>
         </div>
         </div>
 
         <div className="field">
-        <label className="label">Password: </label>
+        <label className="label">Hasło: </label>
         <div className="control">
         <input className="input" type="password" placeholder="Password" onChange={(e) => setLoginPassword(e.target.value)}/>
         </div>
@@ -68,7 +68,7 @@ function Login() {
         </div>
 
         <div className="block">
-        <button className="button is-primary"  onClick={handleLogin}>Submit</button>
+        <button className="button is-primary"  onClick={handleLogin}>Zatwierdź</button>
         </div>
 
         <div className="block">
@@ -77,7 +77,7 @@ function Login() {
 
         <div className="block">
           <Link to="/Register">
-        <button className="button is-primary">Register</button>
+        <button className="button is-primary">Zarejestruj się</button>
         </Link>
         </div>
         

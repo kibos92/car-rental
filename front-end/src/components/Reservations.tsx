@@ -6,16 +6,12 @@ import UserDataService from '../services/user.service';
 const Reservations = () => {
   
   const getAll = useQuery({ queryKey: ['reservations'], queryFn: ReservationDataService.getAll });
-
   const getAllCars = useQuery('cars', CarDataService.getAllCars);
-
   const getAllUsers = useQuery('users', UserDataService.getAll);
 
     return (
       <div>
-        
         <div className="content">
-  
         <h1>Lista rezerwacji:</h1>
         <div className='block'>
         <ul>
@@ -28,11 +24,11 @@ const Reservations = () => {
 
           return (
             <li key={reservation._id}>
-              Reservation number: {reservation._id},
-              User: {userName}, 
-              Start Date: {reservation.startDate.slice(0, 10)}, 
-              End Date: {reservation.endDate.slice(0, 10)}, 
-              Car: {carName}
+              Numer rezerwacji: {reservation._id},
+              Klient: {userName}, 
+              Data rozpoczęcia wynajmu: {reservation.startDate.slice(0, 10)}, 
+              Data zakończenia wynajmu: {reservation.endDate.slice(0, 10)}, 
+              Pojazd zastępczy: {carName}
             </li>
           );
         })}

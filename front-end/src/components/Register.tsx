@@ -42,7 +42,7 @@ function Register() {
   return (
     <div>
         <div className="content">
-          <h1>Register</h1>
+          <h1>Zarejestruj się</h1>
         </div>
 
         <div className="block">
@@ -50,28 +50,28 @@ function Register() {
 <div className="box">
   
 <div className="field">
-<label className="label">Username:</label>
+<label className="label">Nazwa użytkownika:</label>
 <div className="control">
 <input className="input" type="text" placeholder="Username" onChange={(e) => setRegisterUsername(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
-<label className="label">Password: </label>
+<label className="label">Hasło: </label>
 <div className="control">
 <input className="input" type="password" placeholder="Password" onChange={(e) => setRegisterPassword(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
-<label className="label">First Name: </label>
+<label className="label">Imię: </label>
 <div className="control">
 <input className="input" type="text" placeholder="First Name" onChange={(e) => setRegisterFirstName(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
-<label className="label">Last Name: </label>
+<label className="label">Nazwisko: </label>
 <div className="control">
 <input className="input" type="text" placeholder="Last Name" onChange={(e) => setRegisterLastName(e.target.value)}/>
 </div>
@@ -85,7 +85,7 @@ function Register() {
 </div>
 
 <div className="field">
-<label className="label">Contact Details: </label>
+<label className="label">Dane kontaktowe: </label>
 <div className="control">
 <input className="input" type="text" placeholder="Contact Details" onChange={(e) => setRegisterContactDetails(e.target.value)}/>
 </div>

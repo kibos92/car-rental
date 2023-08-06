@@ -150,7 +150,7 @@ const Rental = () => {
           })
         }}
       >
-        Add Department
+        Dodaj oddział
       </button>
 
       </form>
@@ -183,7 +183,7 @@ const Rental = () => {
             </div>
             
             <div className='block'>
-            <Link to={`/rentals/`} className="button is-primary">Return</Link>
+            <Link to={`/rentals/`} className="button is-primary">Powrót</Link>
             </div>
         </div>
       )

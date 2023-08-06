@@ -27,7 +27,7 @@ const Modal = ({ title, children }: ModalProps) => {
           <section className="modal-card-body">{children}</section>
           <footer className="modal-card-foot">
             <button className="button is-success" onClick={toggleModal}>
-              Save
+              Zapisz
             </button>
           </footer>
         </div>

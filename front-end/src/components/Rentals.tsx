@@ -35,7 +35,7 @@ const Rentals = () => {
         <div className='block'>
       <form className='box'>
       <div className="field">
-      <label className='label'>Dodaj nową wypożyczalnie: </label>
+      <label className='label'>Dodaj nową wypożyczalnię: </label>
       <div className="control">
         <input className="input"
           type='name'
@@ -74,7 +74,7 @@ const Rentals = () => {
           })
         }}
       >
-        Add Rental
+        Dodaj wypożyczalnię
       </button>
 
       </form>

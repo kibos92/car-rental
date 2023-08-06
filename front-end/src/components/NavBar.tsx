@@ -31,23 +31,23 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="navbar-item">
             <Link to="/" className="navbar-item">
-            Home
+            Strona główna
             </Link>
             {!!user && user.isAdmin &&(
             <Link to="/rentals" className="navbar-item">
-              Rentals
+              Wypożyczalnie
               </Link>
               )}
               {!!user && user.isAdmin && (
             <Link to="/reservations" className="navbar-item">
-              Reservations
+              Rezerwacje
               </Link>
               )}
           </div>
         </div>
         <div className="navbar-end">
           {!!user && (
-            <div className="navbar-item">Logged in as {user.username}</div>
+            <div className="navbar-item">Zalogowany jako {user.username}</div>
           )}
           <div className="buttons">
           {!!user ? (
@@ -58,13 +58,13 @@ const Navbar = () => {
                     logout.mutate();
                   }}
                 >
-                  Log Out
+                  Wyloguj się
                 </button>
               </div>
             ) : (
               <div className="navbar-item">
                 <Link to="/Login" className="navbar-item">
-                  <button className="button is-primary">Log In</button>
+                  <button className="button is-primary">Zaloguj się</button>
                 </Link>
               </div>
                  )}

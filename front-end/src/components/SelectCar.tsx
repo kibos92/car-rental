@@ -99,12 +99,12 @@ return (
         {selectedCar ? (
       <Link to="/ReservationForm" state={{ car: selectedCar, rentalData: rentalData }}>
         <button className="button is-primary">
-          Next
+          Dalej
         </button>
       </Link>
     ) : (
       <button className="button is-primary" disabled>
-        Next
+        Dalej
       </button>
     )}
 

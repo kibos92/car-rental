@@ -15,9 +15,7 @@ import configurePassport from './auth/passport-local.js';
 const app = express();
 
 app.use(cors());
-
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
@@ -31,7 +29,6 @@ app.use(
 app.use(cookieParser("secretcode"));
 app.use(passport.initialize());
 app.use(passport.session());
-
 configurePassport(passport);
 
 db.mongoose

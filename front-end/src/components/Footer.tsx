@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer" style={footerStyle}>
       <div className="has-text-centered">
-        Footer
+        Sebastian Sobik - 2023
       </div>
     </footer>
   );
