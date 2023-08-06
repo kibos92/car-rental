@@ -70,11 +70,8 @@ const filteredCars = filterCarsByCity();
 
 return (
 <div>
-
 <div className="content">
-  
   <h1>Lista dostępnych pojazdów:</h1>
-
 </div>
 
 <div className="block">
@@ -107,9 +104,7 @@ return (
         Dalej
       </button>
     )}
-
-        </div>
-
+  </div>
 </div>
 
 );

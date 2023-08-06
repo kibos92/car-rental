@@ -52,28 +52,28 @@ function Register() {
 <div className="field">
 <label className="label">Nazwa użytkownika:</label>
 <div className="control">
-<input className="input" type="text" placeholder="Username" onChange={(e) => setRegisterUsername(e.target.value)}/>
+<input className="input" type="text" placeholder="Login" onChange={(e) => setRegisterUsername(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
 <label className="label">Hasło: </label>
 <div className="control">
-<input className="input" type="password" placeholder="Password" onChange={(e) => setRegisterPassword(e.target.value)}/>
+<input className="input" type="password" placeholder="Hasło" onChange={(e) => setRegisterPassword(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
 <label className="label">Imię: </label>
 <div className="control">
-<input className="input" type="text" placeholder="First Name" onChange={(e) => setRegisterFirstName(e.target.value)}/>
+<input className="input" type="text" placeholder="Imię" onChange={(e) => setRegisterFirstName(e.target.value)}/>
 </div>
 </div>
 
 <div className="field">
 <label className="label">Nazwisko: </label>
 <div className="control">
-<input className="input" type="text" placeholder="Last Name" onChange={(e) => setRegisterLastName(e.target.value)}/>
+<input className="input" type="text" placeholder="Nazwisko" onChange={(e) => setRegisterLastName(e.target.value)}/>
 </div>
 </div>
 
@@ -87,7 +87,7 @@ function Register() {
 <div className="field">
 <label className="label">Dane kontaktowe: </label>
 <div className="control">
-<input className="input" type="text" placeholder="Contact Details" onChange={(e) => setRegisterContactDetails(e.target.value)}/>
+<input className="input" type="text" placeholder="Dane kontaktowe" onChange={(e) => setRegisterContactDetails(e.target.value)}/>
 </div>
 </div>
 
@@ -96,7 +96,7 @@ function Register() {
 </div>
 
 <div className="block">
-<button className="button is-primary"  onClick={handleRegister}>Submit</button>
+<button className="button is-primary"  onClick={handleRegister}>Zatwierdź</button>
 </div>
 
   </div>

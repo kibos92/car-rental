@@ -16,7 +16,6 @@ const register = (req, res) => {
         if (err) {
           return res.status(500).send("Internal Server Error");
         }
-
         const newUser = new User({
           username: req.body.username,
           password: hashedPassword,
@@ -26,7 +25,6 @@ const register = (req, res) => {
           contactDetails: req.body.contactDetails,
           isAdmin: false
         });
-
         newUser.save((err) => {
           if (err) {
             return res.status(500).send("Internal Server Error");

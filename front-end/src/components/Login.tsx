@@ -52,14 +52,14 @@ function Login() {
         <div className="field">
         <label className="label">Nazwa użytkownika:</label>
         <div className="control">
-        <input className="input" type="text" placeholder="Username" onChange={(e) => setLoginUsername(e.target.value)}/>
+        <input className="input" type="text" placeholder="Login" onChange={(e) => setLoginUsername(e.target.value)}/>
         </div>
         </div>
 
         <div className="field">
         <label className="label">Hasło: </label>
         <div className="control">
-        <input className="input" type="password" placeholder="Password" onChange={(e) => setLoginPassword(e.target.value)}/>
+        <input className="input" type="password" placeholder="Hasło" onChange={(e) => setLoginPassword(e.target.value)}/>
         </div>
         </div>
 
